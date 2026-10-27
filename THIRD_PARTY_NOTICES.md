@@ -9,28 +9,19 @@ Swift Package Manager downloads these when you build; none of their code is copi
 
 | Package | Licence | Copyright |
 |---|---|---|
-| [WhisperKit](https://github.com/argmaxinc/WhisperKit) (WhisperKit, SpeakerKit) | MIT | © 2024 argmax, inc. |
-| [yyjson](https://github.com/ibireme/yyjson) | MIT | © 2020 YaoYuan |
-| [swift-transformers](https://github.com/huggingface/swift-transformers) | Apache-2.0 | Hugging Face |
-| [swift-jinja](https://github.com/huggingface/swift-jinja) | Apache-2.0 | Hugging Face |
-| [swift-crypto](https://github.com/apple/swift-crypto) | Apache-2.0 | © 2019 The SwiftCrypto Project |
-| [swift-asn1](https://github.com/apple/swift-asn1) | Apache-2.0 | © 2022 The SwiftASN1 Project |
+| [Argmax Open-Source SDK](https://github.com/argmaxinc/argmax-oss-swift) (WhisperKit, SpeakerKit) | MIT | © 2024 argmax, inc. |
 | [swift-argument-parser](https://github.com/apple/swift-argument-parser) | Apache-2.0 with Runtime Library Exception | Apple Inc. and the Swift project authors |
-| [swift-collections](https://github.com/apple/swift-collections) | Apache-2.0 with Runtime Library Exception | Apple Inc. and the Swift project authors |
 
 The full licence texts are in each package's repository and at
 [apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0) and
 [opensource.org/license/mit](https://opensource.org/license/mit).
 
-### NOTICE files (Apache-2.0)
+### NOTICE (Apache-2.0)
 
-**swift-crypto**: Copyright 2019 The SwiftCrypto Project. Contains test vectors from Google's
-[wycheproof](https://github.com/google/wycheproof) project and a derivation of files from
-[SwiftNIO](https://github.com/apple/swift-nio), both under Apache-2.0.
-
-**swift-asn1**: Copyright 2022 The SwiftASN1 Project. Contains derivations of scripts from
-[SwiftNIO](https://github.com/apple/swift-nio) and
-[Swift OpenAPI Generator](https://github.com/apple/swift-openapi-generator), both under Apache-2.0.
+The Argmax Open-Source SDK includes code derived from Hugging Face's
+[swift-transformers](https://github.com/huggingface/swift-transformers) (Hub and Tokenizers), Copyright 2022 Hugging Face
+SAS, under Apache-2.0 and modified by Argmax, Inc. See its
+[NOTICES](https://github.com/argmaxinc/argmax-oss-swift/blob/main/NOTICES) file.
 
 ## Speech models
 

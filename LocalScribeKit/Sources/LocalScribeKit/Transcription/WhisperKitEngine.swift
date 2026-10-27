@@ -55,7 +55,7 @@ public actor WhisperKitEngine: TranscriptionEngine {
     private static var computeOptions: ModelComputeOptions? {
         #if os(iOS)
         ModelComputeOptions(melCompute: .cpuOnly, audioEncoderCompute: .cpuAndNeuralEngine,
-                            textDecoderCompute: .cpuAndNeuralEngine, prefillCompute: .cpuOnly)
+                            textDecoderCompute: .cpuAndNeuralEngine)
         #else
         nil
         #endif

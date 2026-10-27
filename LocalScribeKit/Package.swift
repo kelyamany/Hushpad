@@ -14,7 +14,7 @@ let package = Package(
         .executable(name: "scribe", targets: ["scribe"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/argmaxinc/WhisperKit.git", from: "0.18.0"),
+        .package(url: "https://github.com/argmaxinc/argmax-oss-swift.git", from: "1.1.1"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
     ],
     targets: [
@@ -24,8 +24,8 @@ let package = Package(
             name: "LocalScribeKit",
             dependencies: [
                 "LocalScribeCore",
-                .product(name: "WhisperKit", package: "WhisperKit"),
-                .product(name: "SpeakerKit", package: "WhisperKit"),
+                .product(name: "WhisperKit", package: "argmax-oss-swift"),
+                .product(name: "SpeakerKit", package: "argmax-oss-swift"),
             ]
         ),
         .executableTarget(
