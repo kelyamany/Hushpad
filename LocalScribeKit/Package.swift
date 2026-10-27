@@ -14,7 +14,7 @@ let package = Package(
         .executable(name: "scribe", targets: ["scribe"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/argmaxinc/WhisperKit.git", from: "0.18.0"),
+        .package(url: "https://github.com/argmaxinc/WhisperKit.git", from: "1.1.1"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
     ],
     targets: [
