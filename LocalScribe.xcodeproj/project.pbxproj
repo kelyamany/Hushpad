@@ -811,7 +811,7 @@
 				);
 				LOCALSCRIBE_MAC_ENTITLEMENTS = App/LocalScribe.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.localscribe.app;
-				PRODUCT_NAME = LocalScribe;
+				PRODUCT_NAME = Hushpad;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -828,7 +828,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.localscribe.app.watchkitapp;
-				PRODUCT_NAME = LocalScribe;
+				PRODUCT_NAME = Hushpad;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -842,7 +842,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.localscribe.app.watchkitapp;
-				PRODUCT_NAME = LocalScribe;
+				PRODUCT_NAME = Hushpad;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -865,7 +865,7 @@
 				);
 				LOCALSCRIBE_MAC_ENTITLEMENTS = App/LocalScribe.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.localscribe.app;
-				PRODUCT_NAME = LocalScribe;
+				PRODUCT_NAME = Hushpad;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;

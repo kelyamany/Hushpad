@@ -12,7 +12,7 @@ struct WatchRootView: View {
             RecordingsPage()
         }
         .tabViewStyle(.verticalPage)
-        .alert("LocalScribe", isPresented: Binding(get: { recorder.errorMessage != nil },
+        .alert("Hushpad", isPresented: Binding(get: { recorder.errorMessage != nil },
                                                    set: { if !$0 { recorder.errorMessage = nil } })) {
             Button("OK") { recorder.errorMessage = nil }
         } message: {

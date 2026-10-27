@@ -1,7 +1,7 @@
 import Foundation
 
 /// Where the recordings library lives: the app's private folder (default), or a folder the user picked,
-/// e.g. ~/Documents/LocalScribe synced by iCloud Drive — the same way Obsidian vaults work.
+/// e.g. ~/Documents/Hushpad synced by iCloud Drive — the same way Obsidian vaults work.
 /// The choice is remembered as a bookmark, which keeps access across launches (security-scoped on iOS).
 public enum LibraryLocation {
     private static let bookmarkKey = "LocalScribe.libraryBookmark"

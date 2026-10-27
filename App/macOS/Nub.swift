@@ -251,7 +251,7 @@ final class NubPanel: NSPanel {
         animationBehavior = .none
         isReleasedWhenClosed = false
         sharingType = .none
-        title = "LocalScribe"
+        title = "Hushpad"
     }
 
     override var canBecomeKey: Bool { false }

@@ -27,7 +27,7 @@ enum RecordingIntentBridge {
 /// Stop button on the Lock Screen / Dynamic Island. Runs in the app process without opening it.
 struct StopRecordingIntent: LiveActivityIntent {
     static let title: LocalizedStringResource = "Stop Recording"
-    static let description = IntentDescription("Stops the current LocalScribe recording.")
+    static let description = IntentDescription("Stops the current Hushpad recording.")
 
     func perform() async throws -> some IntentResult {
         await RecordingIntentBridge.stop?()
@@ -39,7 +39,7 @@ struct StopRecordingIntent: LiveActivityIntent {
 /// `AudioRecordingIntent` lets the app start the microphone from the background; it must start a Live Activity.
 struct StartRecordingIntent: AudioRecordingIntent {
     static let title: LocalizedStringResource = "Record Meeting"
-    static let description = IntentDescription("Starts recording a meeting with LocalScribe.")
+    static let description = IntentDescription("Starts recording a meeting with Hushpad.")
 
     func perform() async throws -> some IntentResult {
         await RecordingIntentBridge.start?()

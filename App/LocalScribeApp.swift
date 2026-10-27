@@ -25,7 +25,7 @@ struct LocalScribeApp: App {
 
     #if os(macOS)
     @SceneBuilder private var macScenes: some Scene {
-        Window("LocalScribe", id: "main") {
+        Window("Hushpad", id: "main") {
             MacRootView()
                 .appLock()
                 .environment(model)
@@ -156,13 +156,13 @@ struct MenuBarContent: View {
         let active = model.jobs.values.filter(\.isActive).count
         if active > 0 { Text("Transcribing \(active) recording\(active == 1 ? "" : "s")…") }
         Divider()
-        Button("Open LocalScribe") {
+        Button("Open Hushpad") {
             openWindow(id: "main")
             NSApp.activate()
         }
         SettingsLink { Text("Settings…") }
         Divider()
-        Button("Quit LocalScribe") { NSApp.terminate(nil) }.keyboardShortcut("q")
+        Button("Quit Hushpad") { NSApp.terminate(nil) }.keyboardShortcut("q")
     }
 }
 #endif

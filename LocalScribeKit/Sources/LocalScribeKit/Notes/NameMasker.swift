@@ -4,7 +4,7 @@ import Foundation
 /// them back in the answer. Full names and first names map to the same placeholder, so "Anna" and "Anna Schmidt"
 /// both become "Person 1" (and come back as "Anna Schmidt").
 ///
-/// Only names LocalScribe knows (speaker names and attendees) are masked; generic labels like "Speaker 2" are left alone.
+/// Only names Hushpad knows (speaker names and attendees) are masked; generic labels like "Speaker 2" are left alone.
 public struct NameMasker: Sendable {
     /// Placeholder → the name it stands for.
     public private(set) var names: [String: String] = [:]

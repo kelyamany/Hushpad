@@ -100,7 +100,7 @@ public final class RecordingSession {
         }
         if options.screenshots != .off {
             if !CGPreflightScreenCaptureAccess() {
-                warnings.append("Screenshots are off: allow LocalScribe under System Settings › Privacy & Security › Screen & System Audio Recording.")
+                warnings.append("Screenshots are off: allow Hushpad under System Settings › Privacy & Security › Screen & System Audio Recording.")
             }
             let capturer = ScreenCapturer(recordingFolder: folder, startHostTime: startHostTime, mode: options.screenshots)
             screenCapturer = capturer
@@ -181,7 +181,7 @@ public final class RecordingSession {
             if system.peak == 0 {
                 // Pure digital silence usually means the permission was denied. The file stays on disk but isn't transcribed.
                 recording.hasSystemAudio = false
-                warnings.append("Call audio was silent. If you were on a call, allow LocalScribe under System Settings › Privacy & Security › Screen & System Audio Recording.")
+                warnings.append("Call audio was silent. If you were on a call, allow Hushpad under System Settings › Privacy & Security › Screen & System Audio Recording.")
             }
         }
         // Both tracks are written on the same clock, so no offset is needed.

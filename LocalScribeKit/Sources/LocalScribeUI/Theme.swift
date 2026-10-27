@@ -1,9 +1,9 @@
 import SwiftUI
 
-/// LocalScribe's palette: cool paper, an ink-blue accent, and red reserved for recording. Every colour is semantic: pick
+/// Hushpad's palette: cool paper, an ink-blue accent, and red reserved for recording. Every colour is semantic: pick
 /// by meaning ("danger", "cloud"), never by hue. See DESIGN.md.
 public enum Theme {
-    // LocalScribe's own palette: cool neutrals and ink blue.
+    // Hushpad's own palette: cool neutrals and ink blue.
 
     // Surfaces
     /// The page: cool off-white / near-black. Behind documents and lists.

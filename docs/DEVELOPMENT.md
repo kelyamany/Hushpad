@@ -68,7 +68,7 @@ Debug builds can open a demo library instead of yours and save window images, wi
 
 ```bash
 LOCALSCRIBE_DEMO_LIBRARY=/path/to/demo LOCALSCRIBE_SELECT=<meeting id> LOCALSCRIBE_SNAPSHOT=/tmp/shot \
-  build.noindex/…/LocalScribe.app/Contents/MacOS/LocalScribe
+  build.noindex/…/Hushpad.app/Contents/MacOS/Hushpad
 ```
 
 Only ever use invented meetings in screenshots and bug reports.

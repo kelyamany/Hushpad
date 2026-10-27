@@ -5,7 +5,7 @@ enum SettingsCopy {
     static let librarySync = "Choose the same iCloud Drive folder on Mac and iPhone to sync."
     static let meetingsOffer = "Nothing records until you click Take notes."
     static let meetingsStop = "Asks if you're still there after 10 quiet minutes."
-    static let infoMeetings = "LocalScribe only checks which apps are using the microphone. It never joins, reads or changes your call, so nobody in the meeting can tell. Leaving a call doesn't stop the note, so you can rejoin."
+    static let infoMeetings = "Hushpad only checks which apps are using the microphone. It never joins, reads or changes your call, so nobody in the meeting can tell. Leaving a call doesn't stop the note, so you can rejoin."
 
     // Recording
     static let fullTranscript = "Off: click Transcribe when you want one."
@@ -24,7 +24,7 @@ enum SettingsCopy {
     static let lock = "Recording keeps going while locked."
     static let infoLockPhone = "Finished meetings on this iPhone can't be read while the iPhone is locked."
     static let retention = "Transcripts and notes are kept."
-    static let encryption = "Only LocalScribe on your devices can open your meetings."
+    static let encryption = "Only Hushpad on your devices can open your meetings."
     static let infoEncryption = "Even someone with the files can't read them. The key is kept in iCloud Keychain; keep your Recovery Key somewhere safe. Encrypted files can't be opened in Finder or Obsidian, so use Export for plain copies."
     static let cloud = "Only for notes. Audio never leaves your devices."
     static let infoCloud = "When you pick a cloud notes model, the transcript text and your notes are sent to it. Transcription always runs on your devices. Keys are kept in your Keychain and sync through iCloud Keychain."
