@@ -6,6 +6,7 @@ import Foundation
 public enum AppDirectories {
     public static var root: URL {
         get throws {
+            if let demo = DemoMode.appData { return try ensure(demo) }
             let base = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             return try ensure(base.appendingPathComponent("LocalScribe", isDirectory: true))
         }

@@ -8,7 +8,7 @@ import Security
 /// A Mac build without a provisioning profile (ad-hoc signed) can't use the synced keychain; the key is then
 /// kept on that Mac only, as before.
 public enum KeychainStore {
-    private static let service = "LocalScribe"
+    private static let service = DemoMode.library == nil ? "LocalScribe" : "Hushpad Demo"
 
     public enum Scope: Sendable, Equatable {
         /// In iCloud Keychain.

@@ -8,7 +8,7 @@ import LocalScribeKit
 struct Scribe: AsyncParsableCommand {
     static let configuration = CommandConfiguration(
         abstract: "Local meeting transcription with speaker labels.",
-        subcommands: [Transcribe.self, Live.self, Record.self, ImportGranola.self, Notes.self, Merge.self, Models.self],
+        subcommands: [Transcribe.self, Live.self, Record.self, ImportGranola.self, Notes.self, Merge.self, Models.self, DemoLibrary.self],
         defaultSubcommand: Transcribe.self
     )
 }
