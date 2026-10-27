@@ -1,9 +1,9 @@
 #if os(macOS)
 import AppKit
 
-/// Keeps every LocalScribe window out of screen shares and screen recordings made by other apps (Zoom, Teams, Meet,
+/// Keeps every Hushpad window out of screen shares and screen recordings made by other apps (Zoom, Teams, Meet,
 /// QuickTime): the main window, settings, sheets, alerts, menus, popovers and the nub. Nobody in a meeting sees
-/// LocalScribe when you share your screen, even if you share the whole display.
+/// Hushpad when you share your screen, even if you share the whole display.
 ///
 /// Rather than marking windows one by one, it marks each window once as it appears, after every event-loop pass
 /// (`didUpdateNotification`). The check is a few pointer comparisons for a handful of windows.

@@ -64,12 +64,22 @@ LOCALSCRIBE_LIVE=1 LOCALSCRIBE_LIVE_OUT=/tmp/live swift test --filter LiveProvid
 
 ## Screenshots
 
-Debug builds can open a demo library instead of yours and save window images, without screen recording permission:
+Debug builds have a demo mode that runs on invented meetings and keeps everything apart from your real app: its own
+library, app data, keychain entries and settings. It only starts in a build with a `.demo` bundle id.
 
 ```bash
-LOCALSCRIBE_DEMO_LIBRARY=/path/to/demo LOCALSCRIBE_SELECT=<meeting id> LOCALSCRIBE_SNAPSHOT=/tmp/shot \
-  build.noindex/…/LocalScribe.app/Contents/MacOS/LocalScribe
+cd LocalScribeKit && swift run scribe demo-library --output "/tmp/Demo Library" && cd ..
+xcodebuild -scheme LocalScribe -destination 'platform=macOS' -derivedDataPath build.noindex/demo \
+  CODE_SIGNING_ALLOWED=NO PRODUCT_BUNDLE_IDENTIFIER=dev.localscribe.demo build
+defaults write dev.localscribe.demo onboarded -bool true
+LOCALSCRIBE_DEMO_LIBRARY="/tmp/Demo Library" LOCALSCRIBE_SNAPSHOT=/tmp/shot \
+  build.noindex/demo/Build/Products/Debug/Hushpad.app/Contents/MacOS/Hushpad -NSRequiresAquaSystemAppearance YES
 ```
+
+`LOCALSCRIBE_SNAPSHOT` saves PNGs of the windows after a few seconds, without screen recording permission. Add
+`LOCALSCRIBE_SELECT=<meeting id>` to open a meeting, `LOCALSCRIBE_SNAPSHOT_TRANSCRIPT=1` to open its transcript, or
+`LOCALSCRIBE_NUB=prompt|recording|ended|quiet` to show the floating nub. When you're done, run
+`lsregister -u` on the demo app so it doesn't show up in Launchpad.
 
 Only ever use invented meetings in screenshots and bug reports.
 

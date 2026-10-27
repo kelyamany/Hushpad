@@ -162,7 +162,7 @@ private struct RecoveryKeySheet: View {
                     #endif
                     copied = true
                 }
-                ShareLink(item: "LocalScribe Recovery Key: \(key)") { Label("Save…", systemImage: "square.and.arrow.up") }
+                ShareLink(item: "Hushpad Recovery Key: \(key)") { Label("Save…", systemImage: "square.and.arrow.up") }
                 Spacer()
                 Button("Done") { dismiss() }.buttonStyle(.borderedProminent).keyboardShortcut(.defaultAction)
             }
@@ -306,11 +306,11 @@ struct PermissionRow: View {
     private func caption(_ status: PermissionStatus) -> String {
         switch status {
         case .denied:
-            "Turned off. Switch on LocalScribe in \(AppModel.settingsName) › Privacy & Security › \(settingsPane)."
+            "Turned off. Switch on Hushpad in \(AppModel.settingsName) › Privacy & Security › \(settingsPane)."
         case .unknown:
-            "If calls record silently, check LocalScribe in \(AppModel.settingsName) › Privacy & Security › \(settingsPane)."
+            "If calls record silently, check Hushpad in \(AppModel.settingsName) › Privacy & Security › \(settingsPane)."
         case .needsRestart:
-            "Allowed. Restart LocalScribe to start using it."
+            "Allowed. Restart Hushpad to start using it."
         default:
             permission.purpose
         }

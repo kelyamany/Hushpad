@@ -117,6 +117,6 @@ struct RecordControl: ControlWidget {
             }
         }
         .displayName("Record Meeting")
-        .description("Start recording a meeting with LocalScribe.")
+        .description("Start recording a meeting with Hushpad.")
     }
 }

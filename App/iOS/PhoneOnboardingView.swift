@@ -76,7 +76,7 @@ private struct OnboardingPage<Art: View, Content: View>: View {
 
 private struct WelcomePage: View {
     var body: some View {
-        OnboardingPage(title: "LocalScribe",
+        OnboardingPage(title: "Hushpad",
                        subtitle: "Listen in, write less. Record any meeting and get notes that know who said what.") {
             Vignette(.library, size: 140)
         } content: {
@@ -95,7 +95,7 @@ private struct SyncPage: View {
 
     var body: some View {
         OnboardingPage(title: "Use it with your Mac",
-                       subtitle: "Pick the same folder here and on your Mac, for example iCloud Drive › Documents › LocalScribe, to share one library.") {
+                       subtitle: "Pick the same folder here and on your Mac, for example iCloud Drive › Documents › Hushpad, to share one library.") {
             Vignette(.folder, size: 140)
         } content: {
             VStack(spacing: Space.m) {

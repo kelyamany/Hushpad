@@ -61,7 +61,7 @@ final class AppModel {
     /// What you type while recording. Saved to notes/mine.md when the recording stops (and periodically).
     var liveNotes = "" { didSet { scheduleLiveNotesSave() } }
 
-    /// The library: the app's private folder or a folder the user chose (e.g. ~/Documents/LocalScribe in iCloud).
+    /// The library: the app's private folder or a folder the user chose (e.g. ~/Documents/Hushpad in iCloud).
     private(set) var store: RecordingStore
     private(set) var libraryIsCustom: Bool
     private var notesSaveTask: Task<Void, Never>?
@@ -380,7 +380,7 @@ final class AppModel {
         await permissions.refresh()
         if permissions.status(.microphone) != .granted {
             guard await permissions.request(.microphone) == .granted else {
-                post("LocalScribe needs the microphone to record. Allow it in \(Self.settingsName) › Privacy & Security › Microphone.",
+                post("Hushpad needs the microphone to record. Allow it in \(Self.settingsName) › Privacy & Security › Microphone.",
                      action: .permission(.microphone))
                 return
             }
@@ -401,7 +401,7 @@ final class AppModel {
             var warnings = session.warnings
             #if os(macOS)
             if callAudioOff {
-                warnings.append("Call audio is turned off, so only your microphone is recorded. Allow LocalScribe in System Settings › Privacy & Security › Screen & System Audio Recording.")
+                warnings.append("Call audio is turned off, so only your microphone is recorded. Allow Hushpad in System Settings › Privacy & Security › Screen & System Audio Recording.")
             }
             #endif
             if !warnings.isEmpty {
@@ -486,7 +486,7 @@ final class AppModel {
         if await session.captureScreenshot() != nil {
             touch(session.recording.id)
         } else if !CGPreflightScreenCaptureAccess() {
-            post("Couldn't take a screenshot: LocalScribe needs Screen & System Audio Recording.", action: .permission(.screenRecording))
+            post("Couldn't take a screenshot: Hushpad needs Screen & System Audio Recording.", action: .permission(.screenRecording))
         } else {
             post("Couldn't take a screenshot of the meeting.")
         }

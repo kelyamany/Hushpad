@@ -70,7 +70,7 @@ public struct MeetingExporter: Sendable {
             }
         }
 
-        // The raw data, so nothing is lost (another app or a future LocalScribe can read it back).
+        // The raw data, so nothing is lost (another app or a future Hushpad can read it back).
         let data = destination.appendingPathComponent("data", isDirectory: true)
         try fm.createDirectory(at: data.appendingPathComponent("transcripts", isDirectory: true), withIntermediateDirectories: true)
         if let json = try FileCoordination.read(source.appendingPathComponent("recording.json")) {
@@ -83,13 +83,13 @@ public struct MeetingExporter: Sendable {
         return destination
     }
 
-    /// Exports every meeting into "LocalScribe Export <date>/" inside `directory`, one subfolder per LocalScribe
+    /// Exports every meeting into "Hushpad Export <date>/" inside `directory`, one subfolder per Hushpad
     /// folder (meetings without a folder sit at the top). Returns the export folder.
     @discardableResult
     public func exportLibrary(_ recordings: [Recording], folders: [Folder], into directory: URL,
                               progress: @Sendable (Double) -> Void = { _ in }) async throws -> URL {
         let date = Date().formatted(.iso8601.year().month().day())
-        let root = Self.unique(directory.appendingPathComponent("LocalScribe Export \(date)", isDirectory: true))
+        let root = Self.unique(directory.appendingPathComponent("Hushpad Export \(date)", isDirectory: true))
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
         let names = Dictionary(folders.map { ($0.id, RecordingStore.sanitize($0.name)) }, uniquingKeysWith: { first, _ in first })
         for (index, recording) in recordings.enumerated() {

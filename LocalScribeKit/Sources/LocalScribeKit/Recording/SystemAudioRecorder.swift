@@ -72,7 +72,7 @@ public final class SystemAudioRecorder: @unchecked Sendable {
         let outputUID = try Self.defaultOutputUID()
         self.outputUID = outputUID
         let description: [String: Any] = [
-            kAudioAggregateDeviceNameKey: "LocalScribe System Audio",
+            kAudioAggregateDeviceNameKey: "Hushpad System Audio",
             kAudioAggregateDeviceUIDKey: UUID().uuidString,
             kAudioAggregateDeviceMainSubDeviceKey: outputUID,
             kAudioAggregateDeviceIsPrivateKey: true,

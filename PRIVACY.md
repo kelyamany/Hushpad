@@ -1,6 +1,6 @@
 # Privacy
 
-LocalScribe has no servers, no accounts and no analytics. This page lists everything that can leave your devices,
+Hushpad has no servers, no accounts and no analytics. This page lists everything that can leave your devices,
 and when.
 
 ## What never leaves your devices
@@ -33,7 +33,7 @@ When a cloud notes model is used:
   fails instead of falling back.
 - **Names hidden** (on by default): speaker and attendee names are replaced with "Person 1", "Person 2"… before
   the text is sent, and put back into the notes on your device. Names that only appear inside sentences and aren't
-  known to LocalScribe can't be detected.
+  known to Hushpad can't be detected.
 - Requests use an ephemeral connection: nothing is cached on disk.
 - OpenCode Go is made for coding tools; check its terms before using it for meeting notes.
 
@@ -49,18 +49,18 @@ When a cloud notes model is used:
   locked; meetings still being recorded or transcribed stay readable after the first unlock, so background work can finish.
 - **Excluded from backups:** the app's private library isn't included in iCloud or computer backups (a library
   folder you choose follows your own backup settings).
-- **Invisible to the other side of a call:** every LocalScribe window (the app, the floating nub, the captions bubble,
+- **Invisible to the other side of a call:** every Hushpad window (the app, the floating nub, the captions bubble,
   menus and sheets) is excluded from screen shares and screen recordings, even when you share the whole screen. No bot
-  joins, no virtual camera or microphone is added, the call-audio tap is private to LocalScribe (call apps never see a
-  new device), and LocalScribe plays no sounds. The menu bar icon (drawn by macOS, so it can't be hidden) looks the
+  joins, no virtual camera or microphone is added, the call-audio tap is private to Hushpad (call apps never see a
+  new device), and Hushpad plays no sounds. The menu bar icon (drawn by macOS, so it can't be hidden) looks the
   same whether or not you're recording. The orange and purple privacy dots are macOS's own and are shown to you only.
   Automatic screenshots are silent too: macOS's ScreenCaptureKit copies the screen from the window server, so the call
-  app is never touched or notified, no shutter sound plays, LocalScribe's own windows are left out, and nothing is
+  app is never touched or notified, no shutter sound plays, Hushpad's own windows are left out, and nothing is
   captured while you pause.
   Because no one else is notified, it's up to you to tell people and get their consent before you record. Recording
   laws differ by place, and some require everyone's agreement.
 - **Delete old audio:** optionally remove audio after 30, 90 or 365 days and keep only the text.
-- **Deleting a meeting** (or its audio) removes the files for good. Nothing goes to the system Trash, where audio and notes would sit outside the library for anyone to open. LocalScribe asks first.
+- **Deleting a meeting** (or its audio) removes the files for good. Nothing goes to the system Trash, where audio and notes would sit outside the library for anyone to open. Hushpad asks first.
 
 ## Permissions
 
@@ -71,4 +71,4 @@ When a cloud notes model is used:
 
 ## Telemetry
 
-None. LocalScribe doesn't collect usage data, crash reports or identifiers.
+None. Hushpad doesn't collect usage data, crash reports or identifiers.

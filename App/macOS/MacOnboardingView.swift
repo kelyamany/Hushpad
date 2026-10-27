@@ -3,7 +3,7 @@ import LocalScribeKit
 import LocalScribeUI
 import SwiftUI
 
-/// First launch: what LocalScribe does, where the library lives, permissions, the model download.
+/// First launch: what Hushpad does, where the library lives, permissions, the model download.
 /// Every step can be skipped; anything left out is offered again the moment it's needed.
 struct MacOnboardingView: View {
     @Environment(AppModel.self) private var model
@@ -74,7 +74,7 @@ struct MacOnboardingView: View {
             SoundLine()
                 .stroke(Theme.accent, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
                 .frame(width: 180, height: 34)
-            heading("Welcome to LocalScribe", "Listen in, write less. Your meetings become notes, made on your Mac.")
+            heading("Welcome to Hushpad", "Listen in, write less. Your meetings become notes, made on your Mac.")
             VStack(alignment: .leading, spacing: Space.l) {
                 FeatureRow(symbol: "person.2.wave.2", title: "In the room and on calls",
                            detail: "Records your microphone and Zoom, Teams or Meet audio. No bot joins the call.")

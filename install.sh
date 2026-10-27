@@ -1,5 +1,5 @@
 #!/bin/zsh
-# LocalScribe installer: builds the latest source and installs it, keeping exactly one copy of the app.
+# Hushpad installer: builds the latest source and installs it, keeping exactly one copy of the app.
 #
 #   ./install.sh                 Mac: test, build, install to /Applications, launch
 #   ./install.sh --iphone        also build & install on the connected iPhone (+ Apple Watch app)
@@ -8,7 +8,7 @@
 #   ./install.sh --skip-tests    don't run the test suite
 #   ./install.sh --team ABCDE12345   your Apple Development team ID (auto-detected if omitted)
 #   ./install.sh --tidy          only remove stray copies of the app (Launchpad duplicates, old builds)
-#   ./install.sh --uninstall     remove LocalScribe from this Mac (asks before touching recordings)
+#   ./install.sh --uninstall     remove Hushpad from this Mac (asks before touching recordings)
 #   ./install.sh --uninstall --iphone   …and from the connected iPhone (and its Watch)
 #
 # Installing never touches your recordings, settings or downloaded models.
@@ -16,7 +16,8 @@ set -euo pipefail
 
 ROOT="${0:A:h}"
 BUILD="$ROOT/build.noindex"          # .noindex: Spotlight and Launchpad ignore build products
-APP_NAME="LocalScribe"
+APP_NAME="Hushpad"
+OLD_DEST="/Applications/LocalScribe.app"   # the app's name before 1.0; same app, same data
 BUNDLE_ID="dev.localscribe.app"
 DEST="/Applications/$APP_NAME.app"
 SUPPORT="$HOME/Library/Application Support/LocalScribe"
@@ -67,10 +68,10 @@ xcb() {
 cd "$ROOT"
 
 # ── Stray copies ─────────────────────────────────────────────────────────────
-# Every LocalScribe.app macOS has ever seen (build folders, disk images, simulator builds) shows up in Launchpad.
+# Every Hushpad.app (or LocalScribe.app, its old name) macOS has ever seen (build folders, disk images, simulator builds) shows up in Launchpad.
 # Keep only the one in /Applications: unregister the rest and delete old build products of this repo.
 registered_copies() {
-  "$LSREGISTER" -dump 2>/dev/null | sed -nE 's/^path:[[:space:]]+(.*\/'"$APP_NAME"'\.app)( \(0x[0-9a-f]+\))?$/\1/p' | sort -u
+  "$LSREGISTER" -dump 2>/dev/null | sed -nE 's/^path:[[:space:]]+(.*\/('"$APP_NAME"'|LocalScribe)\.app)( \(0x[0-9a-f]+\))?$/\1/p' | sort -u
 }
 
 tidy() {
@@ -86,7 +87,7 @@ tidy() {
     if [[ -e "$dir" ]]; then rm -rf "$dir"; fi
   done
   if [[ -d "$BUILD" ]]; then
-    find "$BUILD" -name "$APP_NAME.app" -type d -prune 2>/dev/null | while IFS= read -r app; do
+    find "$BUILD" \( -name "$APP_NAME.app" -o -name "LocalScribe.app" \) -type d -prune 2>/dev/null | while IFS= read -r app; do
       "$LSREGISTER" -u "$app" >/dev/null 2>&1 || true
     done || true
   fi
@@ -97,11 +98,14 @@ tidy() {
 }
 
 quit_mac_app() {
-  mac_running() { pgrep -qf "^$DEST/Contents/MacOS/$APP_NAME" || pgrep -qf "$APP_NAME.app/Contents/MacOS/$APP_NAME$"; }
+  mac_running() {
+    pgrep -qf "^$DEST/Contents/MacOS/$APP_NAME" || pgrep -qf "$APP_NAME.app/Contents/MacOS/$APP_NAME$" ||
+      pgrep -qf "^$OLD_DEST/Contents/MacOS/LocalScribe"
+  }
   if mac_running; then
-    osascript -e "tell application \"$DEST\" to quit" >/dev/null 2>&1 || true
+    osascript -e "tell application id \"$BUNDLE_ID\" to quit" >/dev/null 2>&1 || true
     for _ in {1..20}; do mac_running || break; sleep 0.5; done
-    mac_running && fail "LocalScribe is still open (recording, or a window waiting for you?). Quit it and rerun."
+    mac_running && fail "Hushpad is still open (recording, or a window waiting for you?). Quit it and rerun."
     ok "Closed the running app"
   fi
 }
@@ -125,7 +129,7 @@ PY
   ok "Found $device_name"
 }
 
-# Bundle ids of every LocalScribe build on the iPhone (older versions may have used other ids).
+# Bundle ids of every Hushpad (or LocalScribe) build on the iPhone (older versions may have used other ids).
 iphone_copies() {
   local apps_json="$BUILD/iphone-apps.json"
   xcrun devicectl device info apps --device "$device_id" --json-output "$apps_json" >/dev/null 2>&1 || return 0
@@ -134,14 +138,14 @@ import json, sys
 data = json.load(open(sys.argv[1]))
 for app in data.get("result", {}).get("apps", []):
     bundle, name = app.get("bundleIdentifier", ""), app.get("name", "")
-    if "localscribe" in bundle.lower() or name == "LocalScribe":
+    if "localscribe" in bundle.lower() or name in ("Hushpad", "LocalScribe"):
         print(bundle)
 PY
 }
 
 # ── Tidy only ────────────────────────────────────────────────────────────────
 if [[ $mode == tidy ]]; then
-  step "Removing stray copies of LocalScribe"
+  step "Removing stray copies of Hushpad"
   tidy
   print "\n${green}${bold}Done.${reset}"
   exit 0
@@ -149,7 +153,7 @@ fi
 
 # ── Uninstall ────────────────────────────────────────────────────────────────
 if [[ $mode == uninstall ]]; then
-  step "Uninstalling LocalScribe"
+  step "Uninstalling Hushpad"
   print "  This removes:"
   if (( do_mac )); then
     info "• the app ($DEST) and every other copy macOS knows about"
@@ -163,7 +167,9 @@ if [[ $mode == uninstall ]]; then
 
   if (( do_mac )); then
     quit_mac_app
-    if [[ -d "$DEST" ]]; then rm -rf "$DEST"; ok "Removed $DEST"; fi
+    for app in "$DEST" "$OLD_DEST"; do
+      if [[ -d "$app" ]]; then rm -rf "$app"; ok "Removed $app"; fi
+    done
     tidy "/nonexistent"
     "$LSREGISTER" -u "$DEST" >/dev/null 2>&1 || true
 
@@ -188,7 +194,7 @@ if [[ $mode == uninstall ]]; then
     total=$((local_count + staged))
     if (( total > 0 )); then
       if ask "Also delete the $total recording(s) stored on this Mac (in $SUPPORT)? They go to the Trash."; then
-        trash_dir="$HOME/.Trash/LocalScribe Recordings $(date +%Y-%m-%d\ %H%M%S)"
+        trash_dir="$HOME/.Trash/Hushpad Recordings $(date +%Y-%m-%d\ %H%M%S)"
         mkdir -p "$trash_dir"
         if [[ -d "$SUPPORT/Recordings" ]]; then mv "$SUPPORT/Recordings" "$trash_dir/"; fi
         if [[ -d "$SUPPORT/In Progress" ]]; then mv "$SUPPORT/In Progress" "$trash_dir/"; fi
@@ -211,14 +217,14 @@ if [[ $mode == uninstall ]]; then
     step "Uninstalling from iPhone"
     find_iphone
     warn "Recordings kept only on the iPhone (not in a synced folder) are deleted with the app."
-    if ask "Remove LocalScribe from $device_name?"; then
+    if ask "Remove Hushpad from $device_name?"; then
       for bundle in $(iphone_copies) "$BUNDLE_ID"; do
         xcrun devicectl device uninstall app --device "$device_id" "$bundle" >/dev/null 2>&1 && ok "Removed $bundle" || true
       done
       info "The Watch app is removed together with the iPhone app."
     fi
   fi
-  print "\n${green}${bold}LocalScribe is uninstalled.${reset}"
+  print "\n${green}${bold}Hushpad is uninstalled.${reset}"
   exit 0
 fi
 
@@ -302,6 +308,11 @@ if (( do_mac )); then
   touch "$DEST"
   "$LSREGISTER" -f "$DEST" >/dev/null 2>&1 || true
   ok "Installed $DEST"
+  if [[ -d "$OLD_DEST" ]]; then
+    "$LSREGISTER" -u "$OLD_DEST" >/dev/null 2>&1 || true
+    rm -rf "$OLD_DEST"
+    ok "Removed the old LocalScribe.app (Hushpad replaces it; your meetings and settings stay)"
+  fi
   tidy
   open "$DEST"
   ok "Launched"

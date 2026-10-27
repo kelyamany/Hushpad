@@ -69,7 +69,7 @@ private struct ErrorAlert: ViewModifier {
     @Environment(AppModel.self) private var model
 
     func body(content: Content) -> some View {
-        content.alert("LocalScribe", isPresented: Binding(get: { model.errorMessage != nil },
+        content.alert("Hushpad", isPresented: Binding(get: { model.errorMessage != nil },
                                                           set: { if !$0 { model.errorMessage = nil } })) {
             Button("OK") { model.errorMessage = nil }
         } message: {

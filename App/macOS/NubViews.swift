@@ -5,7 +5,7 @@ import LocalScribeUI
 import SwiftUI
 
 struct NubView: View {
-    /// LocalScribe's navy pill.
+    /// Hushpad's navy pill.
     fileprivate static let navy = Color(red: 0x1C / 255, green: 0x21 / 255, blue: 0x40 / 255)
     private static let navyEdge = Color(red: 0x3A / 255, green: 0x41 / 255, blue: 0x70 / 255)
 
@@ -105,7 +105,7 @@ struct NubView: View {
         }
         Toggle("Live Captions", isOn: Binding(get: { nub.captionsOn }, set: { nub.captionsOn = $0 }))
         Divider()
-        Button("Open LocalScribe") { nub.openMeeting() }
+        Button("Open Hushpad") { nub.openMeeting() }
     }
 }
 

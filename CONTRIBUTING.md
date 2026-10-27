@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping make LocalScribe better. Bug reports, ideas, documentation fixes, translations and code are all welcome.
+Thanks for helping make Hushpad better. Bug reports, ideas, documentation fixes, translations and code are all welcome.
 
 ## Before you start
 
@@ -10,7 +10,7 @@ Thanks for helping make LocalScribe better. Bug reports, ideas, documentation fi
 
 ## Ground rules
 
-These keep LocalScribe what it is:
+These keep Hushpad what it is:
 
 1. **Audio never leaves the device.** No change may upload recordings.
 2. **Nothing goes to the cloud by default.** Any cloud feature must be off until the user turns it on, and must be

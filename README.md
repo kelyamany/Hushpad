@@ -1,8 +1,8 @@
 <div align="center">
 
-<img width="110" src="docs/images/icon.png" alt="LocalScribe icon" />
+<img width="110" src="docs/images/icon.png" alt="Hushpad app icon: a cream and apricot ribbon on navy" />
 
-<h1>LocalScribe</h1>
+<h1>Hushpad</h1>
 
 <p>
   <b>Meeting notes that stay on your Mac.</b>
@@ -13,19 +13,19 @@
 </p>
 
 <p>
-  <a href="https://github.com/kelyamany/LocalScribe/actions/workflows/ci.yml"><img src="https://github.com/kelyamany/LocalScribe/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/kelyamany/Hushpad/actions/workflows/ci.yml"><img src="https://github.com/kelyamany/Hushpad/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-black" alt="MIT license" /></a>
   <img src="https://img.shields.io/badge/Mac%20·%20iPhone%20·%20Watch-26%2B-2F4A7A" alt="macOS, iOS and watchOS 26+" />
   <img src="https://img.shields.io/badge/audio-never%20leaves%20your%20device-2E7D5B" alt="Audio never leaves your device" />
 </p>
 
-<img width="100%" src="docs/images/meeting.png" alt="A meeting in LocalScribe: notes with decisions and action items" />
+<img width="100%" src="docs/images/demo.gif" alt="Hushpad in action: a call starts and Hushpad offers to take notes; the notes list decisions and action items; the transcript shows who said what; all meetings in one list. Every meeting shown is invented." />
 
 </div>
 
 ## Why you'll like it
 
-- 🤫 **No awkward bot in the call.** LocalScribe listens from your own Mac, iPhone or Watch. Nobody sees an extra guest.
+- 🤫 **No awkward bot in the call.** Hushpad listens from your own Mac, iPhone or Watch. Nobody sees an extra guest.
 - 🔒 **Your voice stays home.** Speech turns into text right on your device. Your audio is never uploaded. Ever.
 - ✍️ **Notes that get to the point.** Jot a few words while you listen. Afterwards you get a summary, the decisions,
   and the to-dos with names attached.
@@ -43,15 +43,15 @@
 
 ## Get it
 
-LocalScribe isn't on the App Store yet, so you build it on your own Mac. It's free and takes a few minutes.
+Hushpad isn't on the App Store yet, so you build it on your own Mac. It's free and takes a few minutes.
 
 1. Install [Xcode](https://apps.apple.com/app/xcode/id497799835) and [XcodeGen](https://github.com/yonaskolb/XcodeGen)
    (`brew install xcodegen`).
 2. Run these three lines in Terminal:
 
    ```bash
-   git clone https://github.com/kelyamany/LocalScribe.git
-   cd LocalScribe
+   git clone https://github.com/kelyamany/Hushpad.git
+   cd Hushpad
    ./install.sh
    ```
 
@@ -77,7 +77,7 @@ Found a security problem? See [SECURITY.md](SECURITY.md).
 
 ## Thanks
 
-LocalScribe is built on [WhisperKit and SpeakerKit](https://github.com/argmaxinc/argmax-oss-swift) by Argmax, OpenAI's
+Hushpad is built on [WhisperKit and SpeakerKit](https://github.com/argmaxinc/argmax-oss-swift) by Argmax, OpenAI's
 [Whisper](https://github.com/openai/whisper) and [pyannote](https://github.com/pyannote/pyannote-audio). The speaker
 models are under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The idea owes a lot to
 [Granola](https://granola.ai) and [anarlog](https://github.com/fastrepl/anarlog). Fonts:
@@ -86,5 +86,5 @@ models are under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The 
 ## License
 
 [MIT](LICENSE): use it, change it, share it. Other people's work keeps its own licence; see
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). LocalScribe is an independent project, not affiliated with Granola or
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Hushpad is an independent project, not affiliated with Granola or
 Argmax.

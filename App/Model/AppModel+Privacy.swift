@@ -145,7 +145,7 @@ extension AppModel {
                     }
                 }.value
             } catch {
-                errorMessage = "Couldn't finish \(encrypt ? "encrypting" : "decrypting") the library: \(error.localizedDescription). It continues next time you open LocalScribe."
+                errorMessage = "Couldn't finish \(encrypt ? "encrypting" : "decrypting") the library: \(error.localizedDescription). It continues next time you open Hushpad."
             }
             privacy.converting = nil
             reload()
@@ -164,7 +164,7 @@ extension AppModel {
             }
             guard failed > 0 else { return }
             await MainActor.run {
-                self?.errorMessage = "Couldn't encrypt \(failed) meeting\(failed == 1 ? "" : "s"). LocalScribe tries again next launch."
+                self?.errorMessage = "Couldn't encrypt \(failed) meeting\(failed == 1 ? "" : "s"). Hushpad tries again next launch."
             }
         }
     }
@@ -202,7 +202,7 @@ extension AppModel {
         let expired = audioExpired(after: settings.audioRetentionDays)
         guard !expired.isEmpty else { return }
         let failed = expired.filter { (try? store.removeAudio($0)) == nil }.count
-        if failed > 0 { post("Couldn't delete old audio from \(failed) meeting\(failed == 1 ? "" : "s"). LocalScribe tries again next launch.") }
+        if failed > 0 { post("Couldn't delete old audio from \(failed) meeting\(failed == 1 ? "" : "s"). Hushpad tries again next launch.") }
         reload()
     }
 }

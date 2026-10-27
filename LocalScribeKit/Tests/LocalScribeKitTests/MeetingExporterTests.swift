@@ -96,7 +96,7 @@ import Testing
             .exportLibrary([a, b], folders: [clients], into: out)
 
         let date = Date().formatted(.iso8601.year().month().day())
-        #expect(result.lastPathComponent == "LocalScribe Export \(date)")
+        #expect(result.lastPathComponent == "Hushpad Export \(date)")
         #expect(exists(result, "Clients/\(RecordingStore.folderName(for: a))"))
         #expect(exists(result, RecordingStore.folderName(for: b)))
         #expect(exists(result, "folders.json"))

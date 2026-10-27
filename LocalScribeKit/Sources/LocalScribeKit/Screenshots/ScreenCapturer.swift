@@ -10,7 +10,7 @@ import os
 /// and falls back to the main display. Images stay in the recording folder and are never uploaded.
 ///
 /// Nobody in the meeting can tell: ScreenCaptureKit reads the window server's own copy of the screen, so the call app
-/// is never touched, notified or slowed visibly; captures make no sound; and LocalScribe's windows are left out (and
+/// is never touched, notified or slowed visibly; captures make no sound; and Hushpad's windows are left out (and
 /// hidden from screen sharing anyway). The only sign is the macOS screen-recording indicator, on your Mac alone.
 public actor ScreenCapturer {
     private let recordingFolder: URL

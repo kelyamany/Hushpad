@@ -1,7 +1,7 @@
 # Third-party notices
 
-LocalScribe's own code is under the [MIT License](LICENSE). It uses the third-party work below, each under its own
-licence. If you ship a built copy of LocalScribe, ship this file with it.
+Hushpad's own code is under the [MIT License](LICENSE). It uses the third-party work below, each under its own
+licence. If you ship a built copy of Hushpad, ship this file with it.
 
 ## Swift packages
 
@@ -32,7 +32,7 @@ The app downloads these to your device the first time it needs them. They are no
 | [argmaxinc/whisperkit-coreml](https://huggingface.co/argmaxinc/whisperkit-coreml), Core ML builds of OpenAI's [Whisper](https://github.com/openai/whisper) | Transcription | MIT |
 | [argmaxinc/speakerkit-coreml](https://huggingface.co/argmaxinc/speakerkit-coreml) by Argmax, built on [pyannote](https://github.com/pyannote/pyannote-audio) | Telling speakers apart | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 
-LocalScribe uses the SpeakerKit models as published, without changes.
+Hushpad uses the SpeakerKit models as published, without changes.
 
 ## Fonts
 

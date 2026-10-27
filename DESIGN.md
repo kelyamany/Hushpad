@@ -1,6 +1,6 @@
-# LocalScribe design system
+# Hushpad design system
 
-LocalScribe should feel calm, like paper and ink. The notes and the transcript are the page; everything around them stays quiet.
+Hushpad should feel calm, like paper and ink. The notes and the transcript are the page; everything around them stays quiet.
 Inspired by Apple's own apps. Code lives in `LocalScribeKit/Sources/LocalScribeUI`.
 
 ## Principles (check every change against these)

@@ -156,7 +156,7 @@ public enum LibraryCrypto {
     /// The private folder holding plain copies. Emptied at launch, when the app goes to the background on iPhone,
     /// and when encryption is turned off.
     public static var cacheFolder: URL {
-        FileManager.default.temporaryDirectory.appendingPathComponent("LocalScribe-open", isDirectory: true)
+        FileManager.default.temporaryDirectory.appendingPathComponent(DemoMode.library == nil ? "LocalScribe-open" : "Hushpad-Demo-open", isDirectory: true)
     }
 
     public static func clearCache() {

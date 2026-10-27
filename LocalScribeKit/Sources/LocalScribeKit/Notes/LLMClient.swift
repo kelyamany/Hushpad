@@ -98,7 +98,7 @@ public struct LLMClient: Sendable {
 
     static let userAgent: String = {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "dev"
-        return "LocalScribe/\(version)"
+        return "Hushpad/\(version)"
     }()
 
     /// No disk cache or cookies, same as the transcription cloud client.
@@ -158,7 +158,7 @@ public struct LLMClient: Sendable {
         var request = URLRequest(url: baseURL.appendingPathComponent("chat/completions"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("LocalScribe", forHTTPHeaderField: "X-Title")
+        request.setValue("Hushpad", forHTTPHeaderField: "X-Title")
         authorize(&request)
         request.httpBody = try JSONEncoder().encode(body(messages, temperature: temperature))
 

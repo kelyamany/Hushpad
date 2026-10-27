@@ -10,7 +10,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>LocalScribe</string>
+	<string>Hushpad</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,11 +28,11 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAudioCaptureUsageDescription</key>
-	<string>LocalScribe records call audio from apps like Zoom, Teams and Google Meet so it can transcribe the other participants on this Mac.</string>
+	<string>Hushpad records call audio from apps like Zoom, Teams and Google Meet so it can transcribe the other participants on this Mac.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Take photos of slides or a whiteboard during a meeting. Photos stay on this device.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>LocalScribe records the people in the room so it can transcribe your meetings on this device.</string>
+	<string>Hushpad records the people in the room so it can transcribe your meetings on this device.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

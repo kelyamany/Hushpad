@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// LocalScribe's mark: a sound wave that settles into a handwritten line ("listen → notes").
+/// Hushpad's mark: a sound wave that settles into a handwritten line ("listen → notes").
 /// Used in the icon, onboarding and illustrations. Drawn left to right in a unit box.
 public struct SoundLine: Shape {
     /// How much of the width is "sound" before it becomes "writing".

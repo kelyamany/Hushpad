@@ -10,7 +10,7 @@ import os
 ///       notes/mine.md, notes/enhanced.md
 ///       screens/<milliseconds>.jpg
 ///
-/// The library can live in a user-chosen folder that iCloud Drive syncs (e.g. ~/Documents/LocalScribe),
+/// The library can live in a user-chosen folder that iCloud Drive syncs (e.g. ~/Documents/Hushpad),
 /// so every file access is coordinated with NSFileCoordinator and folders are found by id, not by name.
 public struct RecordingStore: Sendable {
     public let root: URL

@@ -1,4 +1,4 @@
-// Renders the LocalScribe app icons: one ribbon that loops over itself, drawn with a fixed-angle
+// Renders the Hushpad app icons: one ribbon that loops over itself, drawn with a fixed-angle
 // calligraphy nib so it twists, showing a cream front and an apricot back. Playful, and still says
 // nothing about recording: no sound wave, no microphone, no red dot.
 //

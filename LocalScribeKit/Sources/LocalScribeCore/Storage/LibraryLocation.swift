@@ -1,19 +1,14 @@
 import Foundation
 
 /// Where the recordings library lives: the app's private folder (default), or a folder the user picked,
-/// e.g. ~/Documents/LocalScribe synced by iCloud Drive — the same way Obsidian vaults work.
+/// e.g. ~/Documents/Hushpad synced by iCloud Drive — the same way Obsidian vaults work.
 /// The choice is remembered as a bookmark, which keeps access across launches (security-scoped on iOS).
 public enum LibraryLocation {
     private static let bookmarkKey = "LocalScribe.libraryBookmark"
 
     /// The folder to use right now. Falls back to the private library if a chosen folder is gone.
     public static func resolve(defaults: UserDefaults = .standard) -> (url: URL, isCustom: Bool) {
-        #if DEBUG
-        // Debug builds only: open a demo library (for screenshots) without touching the real one.
-        if let demo = ProcessInfo.processInfo.environment["LOCALSCRIBE_DEMO_LIBRARY"] {
-            return (URL(fileURLWithPath: demo, isDirectory: true), true)
-        }
-        #endif
+        if let demo = DemoMode.library { return (demo, true) }
         if let data = defaults.data(forKey: bookmarkKey) {
             var stale = false
             if let url = try? URL(resolvingBookmarkData: data, options: bookmarkResolutionOptions,

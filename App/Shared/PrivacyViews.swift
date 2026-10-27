@@ -66,7 +66,7 @@ private struct LockedCover: View {
                 Image(systemName: "lock.fill")
                     .font(.system(size: 40, weight: .semibold))
                     .foregroundStyle(Theme.accent)
-                Text("LocalScribe is locked").font(.displaySmall)
+                Text("Hushpad is locked").font(.displaySmall)
                 if model.isRecording {
                     Text("Recording continues in the background.").foregroundStyle(.secondary)
                 }

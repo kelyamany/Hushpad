@@ -26,6 +26,9 @@ struct MacDetailView: View {
     var body: some View {
         if let recording {
             content(recording)
+                #if DEBUG
+                .onAppear { if ProcessInfo.processInfo.environment["LOCALSCRIBE_SNAPSHOT_TRANSCRIPT"] != nil { showTranscript = true } }
+                #endif
         } else {
             EmptyState(.search, title: "Meeting not found", message: "It may have been deleted on another device.")
         }

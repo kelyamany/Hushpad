@@ -8,7 +8,7 @@ import UIKit
 import UserNotifications
 #endif
 
-/// The permissions LocalScribe needs, per device:
+/// The permissions Hushpad needs, per device:
 /// - Mac: Microphone (the room / you), System Audio Recording (the call), Screen Recording (screenshots, optional).
 /// - iPhone: Microphone (the room), Camera (photos of slides / whiteboard, optional).
 public enum Permission: String, CaseIterable, Sendable, Identifiable {
@@ -69,7 +69,7 @@ public enum Permission: String, CaseIterable, Sendable, Identifiable {
 
 public enum PermissionStatus: Sendable, Equatable {
     case granted, denied, notDetermined
-    /// Allowed in System Settings, but macOS only applies it after LocalScribe restarts (screen recording).
+    /// Allowed in System Settings, but macOS only applies it after Hushpad restarts (screen recording).
     case needsRestart
     /// macOS doesn't say (system audio, when the private status check is unavailable); we only know we've asked.
     case unknown
@@ -214,7 +214,7 @@ public enum Permissions {
     }
 
     #if os(macOS)
-    /// Quits and reopens LocalScribe (screen recording access only applies to a fresh process).
+    /// Quits and reopens Hushpad (screen recording access only applies to a fresh process).
     public static func relaunch() {
         let url = Bundle.main.bundleURL
         let configuration = NSWorkspace.OpenConfiguration()
