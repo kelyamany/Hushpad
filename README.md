@@ -77,7 +77,7 @@ Found a security problem? See [SECURITY.md](SECURITY.md).
 
 ## Thanks
 
-LocalScribe is built on [WhisperKit and SpeakerKit](https://github.com/argmaxinc/WhisperKit) by Argmax, OpenAI's
+LocalScribe is built on [WhisperKit and SpeakerKit](https://github.com/argmaxinc/argmax-oss-swift) by Argmax, OpenAI's
 [Whisper](https://github.com/openai/whisper) and [pyannote](https://github.com/pyannote/pyannote-audio). The speaker
 models are under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The idea owes a lot to
 [Granola](https://granola.ai) and [anarlog](https://github.com/fastrepl/anarlog). Fonts:
