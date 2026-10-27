@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Used by install.sh for builds signed with your Apple Development team.
+	     Hardened runtime: allow microphone input. System audio and screen capture use TCC prompts, not entitlements. -->
+	<key>com.apple.security.device.audio-input</key>
+	<true/>
+	<!-- The same keychain group as the iPhone app (same team + bundle id), so the OpenRouter key syncs
+	     through iCloud Keychain. Requires a provisioning profile, which Xcode creates automatically. -->
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)dev.localscribe.app</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,32 @@
+name: Bug report
+description: Something doesn't work as it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please never attach real meeting recordings, transcripts or notes. Describe the problem, or make a short test recording.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start a recording from the menu bar
+        2. …
+  - type: input
+    id: device
+    attributes:
+      label: Device and OS
+      placeholder: MacBook Air M3, macOS 26.1 / iPhone 16, iOS 26.1
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: LocalScribe version or commit

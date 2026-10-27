@@ -1,0 +1,126 @@
+name: LocalScribe
+options:
+  bundleIdPrefix: dev.localscribe
+  deploymentTarget:
+    macOS: "26.0"
+    iOS: "26.0"
+    watchOS: "26.0"
+  createIntermediateGroups: true
+
+packages:
+  LocalScribeKit:
+    path: LocalScribeKit
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    MARKETING_VERSION: "2.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    # Set your (free) Personal Team here or in Xcode › Signing & Capabilities to run on devices.
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  # Mac + iPhone app. The Mac build has every feature; the iPhone build hides Mac-only ones.
+  LocalScribe:
+    type: application
+    supportedDestinations: [macOS, iOS]
+    sources:
+      - path: App
+        excludes: ["*.entitlements"]
+      - path: Shared
+    dependencies:
+      - package: LocalScribeKit
+        product: LocalScribeKit
+      - package: LocalScribeKit
+        product: LocalScribeUI
+      - target: LocalScribeWidgets
+        destinationFilters: [iOS]
+      - target: LocalScribeWatch
+        destinationFilters: [iOS]
+        copy:
+          destination: productsDirectory
+          subpath: $(CONTENTS_FOLDER_PATH)/Watch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.localscribe.app
+        PRODUCT_NAME: LocalScribe
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        ENABLE_HARDENED_RUNTIME: YES
+        # install.sh sets this to App/LocalScribe-Keychain.entitlements for team-signed builds (iCloud Keychain).
+        LOCALSCRIBE_MAC_ENTITLEMENTS: App/LocalScribe.entitlements
+        CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: $(LOCALSCRIBE_MAC_ENTITLEMENTS)
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.productivity
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: LocalScribe
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSMicrophoneUsageDescription: LocalScribe records the people in the room so it can transcribe your meetings on this device.
+        NSAudioCaptureUsageDescription: LocalScribe records call audio from apps like Zoom, Teams and Google Meet so it can transcribe the other participants on this Mac.
+        NSCameraUsageDescription: Take photos of slides or a whiteboard during a meeting. Photos stay on this device.
+        NSSupportsLiveActivities: true
+        UIBackgroundModes: [audio]
+        BGTaskSchedulerPermittedIdentifiers: [dev.localscribe.app.transcribe.*, dev.localscribe.app.notes.*]
+        UILaunchScreen: {}
+        UIApplicationSupportsIndirectInputEvents: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        ITSAppUsesNonExemptEncryption: false
+
+  # Live Activity (Lock Screen + Dynamic Island) and the Control Center "Record" control.
+  LocalScribeWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Widgets
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.localscribe.app.widgets
+        PRODUCT_NAME: LocalScribeWidgets
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: LocalScribe
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+
+  # Watch: records, then hands the audio to the iPhone for transcription.
+  LocalScribeWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: Watch
+    dependencies:
+      - package: LocalScribeKit
+        product: LocalScribeCore
+      - package: LocalScribeKit
+        product: LocalScribeUI
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.localscribe.app.watchkitapp
+        PRODUCT_NAME: LocalScribe
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        SKIP_INSTALL: YES
+    info:
+      path: Watch/Info.plist
+      properties:
+        CFBundleDisplayName: LocalScribe
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: dev.localscribe.app
+        NSMicrophoneUsageDescription: LocalScribe records meetings on your Watch and sends them to your iPhone to transcribe.
+        WKBackgroundModes: [audio]
+        UIBackgroundModes: [audio]

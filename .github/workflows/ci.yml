@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v7
+      - name: Run LocalScribeKit tests
+        run: swift test --package-path LocalScribeKit
+
+  build:
+    name: Build ${{ matrix.name }}
+    runs-on: xcode-27
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS
+            scheme: LocalScribe
+            destination: platform=macOS
+          - name: iOS
+            scheme: LocalScribe
+            destination: generic/platform=iOS Simulator
+          - name: watchOS
+            scheme: LocalScribeWatch
+            destination: generic/platform=watchOS Simulator
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build
+        run: >
+          xcodebuild -project LocalScribe.xcodeproj -scheme "${{ matrix.scheme }}"
+          -destination "${{ matrix.destination }}" CODE_SIGNING_ALLOWED=NO build -quiet
