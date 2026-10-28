@@ -19,7 +19,7 @@
   <img src="https://img.shields.io/badge/audio-never%20leaves%20your%20device-2E7D5B" alt="Audio never leaves your device" />
 </p>
 
-<img width="100%" src="docs/images/demo.gif" alt="Hushpad in action: a call starts and Hushpad offers to take notes; the notes list decisions and action items; the transcript shows who said what; all meetings in one list. Every meeting shown is invented." />
+<img width="100%" src="docs/images/demo.svg" alt="Hushpad in action: a call starts and Hushpad offers to take notes; the notes list decisions and action items; the transcript shows who said what; all meetings in one list. Every meeting shown is invented." />
 
 </div>
 

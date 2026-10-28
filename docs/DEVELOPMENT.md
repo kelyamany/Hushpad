@@ -81,6 +81,11 @@ LOCALSCRIBE_DEMO_LIBRARY="/tmp/Demo Library" LOCALSCRIBE_SNAPSHOT=/tmp/shot \
 `LOCALSCRIBE_NUB=prompt|recording|ended|quiet` to show the floating nub. When you're done, run
 `lsregister -u` on the demo app so it doesn't show up in Launchpad.
 
+To rebuild the README demo, take four snapshots with `LOCALSCRIBE_SNAPSHOT` set to `/tmp/shot/nub` (with
+`LOCALSCRIBE_NUB=prompt`), `/tmp/shot/notes` (with `LOCALSCRIBE_SELECT` set to the Lumen meeting),
+`/tmp/shot/transcript` (the same, plus `LOCALSCRIBE_SNAPSHOT_TRANSCRIPT=1`) and `/tmp/shot/list`, then run
+`python3 -I scripts/make-demo.py /tmp/shot docs/images/demo.svg` (needs `cwebp` and `uv`).
+
 Only ever use invented meetings in screenshots and bug reports.
 
 ## A meeting on disk
