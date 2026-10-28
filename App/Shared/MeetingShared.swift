@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Generated notes or your own: the two views of a meeting's notes (Mac and iPhone).

@@ -1,6 +1,6 @@
 import Foundation
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 
 /// Generated meeting notes (the work happens in `NotesService`).
 extension AppModel {
@@ -52,7 +52,7 @@ extension AppModel {
 
     /// Writes `<Title>.md` plus a `<Title> assets` folder with the screenshots, ready to drop into an Obsidian vault.
     func exportNotes(_ recording: Recording, to directory: URL) throws -> URL {
-        guard var text = enhancedNotes(for: recording) else { throw LocalScribeError.noNotes }
+        guard var text = enhancedNotes(for: recording) else { throw HushpadError.noNotes }
         let name = RecordingStore.sanitize(recording.title)
         let shots = screenshots(for: recording)
         if !shots.isEmpty {

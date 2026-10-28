@@ -1,6 +1,6 @@
 import Foundation
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 
 /// A meeting's transcripts and notes on disk, and speaker renames with undo.
 extension AppModel {

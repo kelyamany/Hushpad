@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// The floating "Ask anything" bar: an optional control on the left (the transcript toggle on a meeting),

@@ -1,7 +1,7 @@
 # Hushpad design system
 
 Hushpad should feel calm, like paper and ink. The notes and the transcript are the page; everything around them stays quiet.
-Inspired by Apple's own apps. Code lives in `LocalScribeKit/Sources/LocalScribeUI`.
+Inspired by Apple's own apps. Code lives in `HushpadKit/Sources/HushpadUI`.
 
 ## Principles (check every change against these)
 
@@ -24,7 +24,7 @@ Inspired by Apple's own apps. Code lives in `LocalScribeKit/Sources/LocalScribeU
 | `Motion` | snappy · smooth · recordPulse | Springs; recordPulse is the only repeating animation |
 
 **Type**
-- Fonts, bundled in `LocalScribeUI/Fonts` under the SIL Open Font License:
+- Fonts, bundled in `HushpadUI/Fonts` under the SIL Open Font License:
   - IBM Plex Serif for titles. Always regular weight, never bold.
   - Hanken Grotesk for everything else.
   - The Watch keeps SF.

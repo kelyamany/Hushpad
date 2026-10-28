@@ -9,7 +9,7 @@ BUILD="$ROOT/build.noindex"   # .noindex: Spotlight and Launchpad ignore build p
 DIST="$ROOT/dist"
 
 xcodegen generate --quiet
-xcodebuild -project LocalScribe.xcodeproj -scheme LocalScribe -configuration Release \
+xcodebuild -project Hushpad.xcodeproj -scheme Hushpad -configuration Release \
   -destination 'platform=macOS' -derivedDataPath "$BUILD" \
   CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= \
   build | grep -E "error:|warning: .*App/|BUILD" || true

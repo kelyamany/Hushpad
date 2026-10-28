@@ -1,6 +1,6 @@
 #if os(macOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Under the notes: screenshots taken while recording plus images you add (e.g. ones saved from another app).

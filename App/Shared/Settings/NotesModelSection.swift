@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Which model writes the meeting notes: provider, model and a connection check. Shared by the Mac Notes tab and the

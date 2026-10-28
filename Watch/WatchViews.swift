@@ -1,5 +1,5 @@
-import LocalScribeCore
-import LocalScribeUI
+import HushpadCore
+import HushpadUI
 import SwiftUI
 
 struct WatchRootView: View {

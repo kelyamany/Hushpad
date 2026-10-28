@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import Observation
 import SwiftUI
 

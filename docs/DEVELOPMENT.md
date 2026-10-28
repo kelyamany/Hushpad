@@ -14,7 +14,7 @@
 ./install.sh --iphone-only  # just renew or update the iPhone and Watch
 ./install.sh --clean        # wipe build caches first
 ./install.sh --tidy         # remove stray copies (duplicate Launchpad icons, old builds)
-./install.sh --uninstall    # remove the app, settings, permissions, models and build files (add --iphone for the phone)
+./uninstall.sh              # remove the app, settings, permissions, keys, models and build files; meetings stay (add --iphone for the phone)
 ```
 
 Builds go to `build.noindex/`, so Spotlight and Launchpad ignore them.
@@ -23,20 +23,25 @@ Signing: with an Apple Development certificate the Mac app is signed with your t
 across updates and keys sync through iCloud Keychain. Without one it's signed to run locally, and macOS may ask for
 permissions again after updates.
 
-To open the project in Xcode: `xcodegen generate && open LocalScribe.xcodeproj`.
+To open the project in Xcode: `xcodegen generate && open Hushpad.xcodeproj`.
+
+Before 1.1 the app's hidden identifiers still used the project's first name, LocalScribe (bundle id
+`dev.localscribe.app`, keychain service, Application Support folder, `localscribe://` meeting links). On its first
+launch the Mac app copies the old settings and keys and moves the old folder (`LegacyInstall`). On iPhone the new
+bundle id is a separate app: meetings move through an iCloud Drive library folder picked in both apps.
 
 ## Layout
 
-- `LocalScribeKit/`: Swift package with the logic, plus the `scribe` CLI (`swift run scribe --help`)
-  - `LocalScribeCore/`: data model, storage, file coordination, library encryption, exporters (also used by the Watch)
-  - `LocalScribeKit/Recording/`: mic and system audio capture on one shared clock, permissions
-  - `LocalScribeKit/Screenshots/`: ScreenCaptureKit capture and slide-change detection
-  - `LocalScribeKit/Transcription/`: WhisperKit engine, model catalog
-  - `LocalScribeKit/Diarization/`: SpeakerKit (pyannote) speaker separation
-  - `LocalScribeKit/Pipeline/`: transcribe → diarize → align → merge, echo and hallucination filtering
-  - `LocalScribeKit/Notes/`: notes generation (OpenAI-compatible client, prompts, name masking), shared settings
-  - `LocalScribeKit/Cloud/`: Keychain (API keys and the library key)
-  - `LocalScribeUI/`: the design system shared by all apps
+- `HushpadKit/`: Swift package with the logic, plus the `hushpad` CLI (`swift run hushpad --help`)
+  - `HushpadCore/`: data model, storage, file coordination, library encryption, exporters (also used by the Watch)
+  - `HushpadKit/Recording/`: mic and system audio capture on one shared clock, permissions
+  - `HushpadKit/Screenshots/`: ScreenCaptureKit capture and slide-change detection
+  - `HushpadKit/Transcription/`: WhisperKit engine, model catalog
+  - `HushpadKit/Diarization/`: SpeakerKit (pyannote) speaker separation
+  - `HushpadKit/Pipeline/`: transcribe → diarize → align → merge, echo and hallucination filtering
+  - `HushpadKit/Notes/`: notes generation (OpenAI-compatible client, prompts, name masking), shared settings
+  - `HushpadKit/Cloud/`: Keychain (API keys and the library key)
+  - `HushpadUI/`: the design system shared by all apps
 - `App/`: SwiftUI app (`Shared/`, `macOS/`, `iOS/`, `Model/`)
   - `Model/AppModel` is the composition root and the one object views observe. The work lives in services it owns:
     `TranscriptionQueue` (jobs, speech models, downloads), `NotesService` (notes jobs and streaming), `PrivacyState`
@@ -51,7 +56,7 @@ To open the project in Xcode: `xcodegen generate && open LocalScribe.xcodeproj`.
 ## Tests
 
 ```bash
-cd LocalScribeKit && swift test
+cd HushpadKit && swift test
 ```
 
 Live provider tests call the real cloud notes APIs with **made-up** meeting text. They're never part of
@@ -59,7 +64,7 @@ Live provider tests call the real cloud notes APIs with **made-up** meeting text
 reads keys from a git-ignored `.env.local` at the repository root (`OPENROUTER_API_KEY=…`, `OPENCODE_API_KEY=…`):
 
 ```bash
-LOCALSCRIBE_LIVE=1 LOCALSCRIBE_LIVE_OUT=/tmp/live swift test --filter LiveProviderTests
+HUSHPAD_LIVE=1 HUSHPAD_LIVE_OUT=/tmp/live swift test --filter LiveProviderTests
 ```
 
 ## Screenshots
@@ -68,22 +73,22 @@ Debug builds have a demo mode that runs on invented meetings and keeps everythin
 library, app data, keychain entries and settings. It only starts in a build with a `.demo` bundle id.
 
 ```bash
-cd LocalScribeKit && swift run scribe demo-library --output "/tmp/Demo Library" && cd ..
-xcodebuild -scheme LocalScribe -destination 'platform=macOS' -derivedDataPath build.noindex/demo \
-  CODE_SIGNING_ALLOWED=NO PRODUCT_BUNDLE_IDENTIFIER=dev.localscribe.demo build
-defaults write dev.localscribe.demo onboarded -bool true
-LOCALSCRIBE_DEMO_LIBRARY="/tmp/Demo Library" LOCALSCRIBE_SNAPSHOT=/tmp/shot \
+cd HushpadKit && swift run hushpad demo-library --output "/tmp/Demo Library" && cd ..
+xcodebuild -scheme Hushpad -destination 'platform=macOS' -derivedDataPath build.noindex/demo \
+  CODE_SIGNING_ALLOWED=NO PRODUCT_BUNDLE_IDENTIFIER=dev.hushpad.demo build
+defaults write dev.hushpad.demo onboarded -bool true
+HUSHPAD_DEMO_LIBRARY="/tmp/Demo Library" HUSHPAD_SNAPSHOT=/tmp/shot \
   build.noindex/demo/Build/Products/Debug/Hushpad.app/Contents/MacOS/Hushpad -NSRequiresAquaSystemAppearance YES
 ```
 
-`LOCALSCRIBE_SNAPSHOT` saves PNGs of the windows after a few seconds, without screen recording permission. Add
-`LOCALSCRIBE_SELECT=<meeting id>` to open a meeting, `LOCALSCRIBE_SNAPSHOT_TRANSCRIPT=1` to open its transcript, or
-`LOCALSCRIBE_NUB=prompt|recording|ended|quiet` to show the floating nub. When you're done, run
+`HUSHPAD_SNAPSHOT` saves PNGs of the windows after a few seconds, without screen recording permission. Add
+`HUSHPAD_SELECT=<meeting id>` to open a meeting, `HUSHPAD_SNAPSHOT_TRANSCRIPT=1` to open its transcript, or
+`HUSHPAD_NUB=prompt|recording|ended|quiet` to show the floating nub. When you're done, run
 `lsregister -u` on the demo app so it doesn't show up in Launchpad.
 
-To rebuild the README demo, take four snapshots with `LOCALSCRIBE_SNAPSHOT` set to `/tmp/shot/nub` (with
-`LOCALSCRIBE_NUB=prompt`), `/tmp/shot/notes` (with `LOCALSCRIBE_SELECT` set to the Lumen meeting),
-`/tmp/shot/transcript` (the same, plus `LOCALSCRIBE_SNAPSHOT_TRANSCRIPT=1`) and `/tmp/shot/list`, then run
+To rebuild the README demo, take four snapshots with `HUSHPAD_SNAPSHOT` set to `/tmp/shot/nub` (with
+`HUSHPAD_NUB=prompt`), `/tmp/shot/notes` (with `HUSHPAD_SELECT` set to the Lumen meeting),
+`/tmp/shot/transcript` (the same, plus `HUSHPAD_SNAPSHOT_TRANSCRIPT=1`) and `/tmp/shot/list`, then run
 `python3 -I scripts/make-demo.py /tmp/shot docs/images/demo.svg` (needs `cwebp` and `uv`).
 
 Only ever use invented meetings in screenshots and bug reports.

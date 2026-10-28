@@ -9,7 +9,7 @@ import base64, subprocess, sys, tempfile
 from pathlib import Path
 
 frames, out = Path(sys.argv[1]), Path(sys.argv[2])
-fonts = Path(__file__).resolve().parent.parent / "LocalScribeKit/Sources/LocalScribeUI/Fonts"
+fonts = Path(__file__).resolve().parent.parent / "HushpadKit/Sources/HushpadUI/Fonts"
 work = Path(tempfile.mkdtemp())
 W, H, SHOT_H = 960, 830, 1520 * 960 / 1918
 INK, BG = "#1c2b4d", "#f4f5f8"

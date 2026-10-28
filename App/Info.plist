@@ -4,8 +4,8 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>dev.localscribe.app.transcribe.*</string>
-		<string>dev.localscribe.app.notes.*</string>
+		<string>dev.hushpad.app.transcribe.*</string>
+		<string>dev.hushpad.app.notes.*</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

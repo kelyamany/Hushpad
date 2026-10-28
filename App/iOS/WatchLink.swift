@@ -1,6 +1,6 @@
 #if os(iOS)
 import Foundation
-import LocalScribeKit
+import HushpadKit
 import WatchConnectivity
 
 /// Receives recordings from the Apple Watch and files them as normal recordings.

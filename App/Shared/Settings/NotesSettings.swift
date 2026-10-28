@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Notes: which model writes them, in what language and shape, and the Ask recipes (Mac).

@@ -1,5 +1,5 @@
 import Foundation
-import LocalScribeCore
+import HushpadCore
 import WatchConnectivity
 
 /// Sends finished recordings to the iPhone with WatchConnectivity file transfers.

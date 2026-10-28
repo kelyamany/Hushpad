@@ -1,6 +1,6 @@
 #if os(macOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// First launch: what Hushpad does, where the library lives, permissions, the model download.

@@ -1,6 +1,6 @@
 import Foundation
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 
 /// Bringing meetings in: merging two recordings, and Granola exports.
 extension AppModel {

@@ -1,6 +1,6 @@
 #if os(iOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Home: meetings grouped by day. The title is a menu that switches between All Meetings, Imported and folders.

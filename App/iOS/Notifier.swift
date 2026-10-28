@@ -1,5 +1,5 @@
 #if os(iOS)
-import LocalScribeKit
+import HushpadKit
 import UIKit
 import UserNotifications
 

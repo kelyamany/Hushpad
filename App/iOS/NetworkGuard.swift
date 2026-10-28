@@ -12,7 +12,7 @@ nonisolated final class NetworkGuard: Sendable {
     private init() {
         let expensive = expensive
         monitor.pathUpdateHandler = { path in expensive.withLock { $0 = path.isExpensive } }
-        monitor.start(queue: DispatchQueue(label: "LocalScribe.NetworkGuard"))
+        monitor.start(queue: DispatchQueue(label: "Hushpad.NetworkGuard"))
     }
 
     var isExpensive: Bool { expensive.withLock { $0 } }

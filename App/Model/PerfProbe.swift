@@ -3,9 +3,9 @@ import Foundation
 import os
 
 /// Debug-only timing for the performance budget (DESIGN.md › Performance). Logs to the "perf" category:
-///   log stream --predicate 'subsystem == "dev.localscribe.app" && category == "perf"'
+///   log stream --predicate 'subsystem == "dev.hushpad.app" && category == "perf"'
 enum PerfProbe {
-    private static let logger = Logger(subsystem: "dev.localscribe.app", category: "perf")
+    private static let logger = Logger(subsystem: "dev.hushpad.app", category: "perf")
 
     static func log(_ label: String, since start: Date) {
         let ms = Date().timeIntervalSince(start) * 1000

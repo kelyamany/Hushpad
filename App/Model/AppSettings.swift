@@ -1,5 +1,5 @@
 import Foundation
-import LocalScribeKit
+import HushpadKit
 import Observation
 
 /// User preferences. Device-specific ones live in UserDefaults; the ones that should follow you between devices

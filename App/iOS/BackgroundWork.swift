@@ -18,7 +18,7 @@ final class BackgroundWork {
     private var fallbacks: [String: UIBackgroundTaskIdentifier] = [:]
     private var pendingProgress: [String: Double] = [:]
 
-    private func identifier(_ id: UUID, _ kind: Kind) -> String { "dev.localscribe.app.\(kind.rawValue).\(id.uuidString)" }
+    private func identifier(_ id: UUID, _ kind: Kind) -> String { "dev.hushpad.app.\(kind.rawValue).\(id.uuidString)" }
 
     func begin(id: UUID, kind: Kind, title: String, subtitle: String, onExpire: @escaping @MainActor () -> Void) {
         let identifier = identifier(id, kind)

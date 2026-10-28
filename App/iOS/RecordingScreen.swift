@@ -1,6 +1,6 @@
 #if os(iOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Full-screen while recording: big timer, live waveform, your own notes, camera for slides.

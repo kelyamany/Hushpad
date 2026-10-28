@@ -1,4 +1,4 @@
-import LocalScribeUI
+import HushpadUI
 import SwiftUI
 
 /// What the list shows instead of "No meetings yet" while the library is still opening, or when it is encrypted

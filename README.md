@@ -56,6 +56,7 @@ Hushpad isn't on the App Store yet, so you build it on your own Mac. It's free a
    ```
 
 The app opens by itself. Want it on your iPhone and Watch too? See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+Changed your mind? `./uninstall.sh` removes the app and everything it set up, and keeps your meetings.
 
 For the AI notes, pick a free model that runs on your Mac ([LM Studio](https://lmstudio.ai) or
 [Ollama](https://ollama.com)), or switch on a cloud model you choose. Cloud only ever gets text, and only when you ask.

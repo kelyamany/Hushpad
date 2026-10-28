@@ -1,6 +1,6 @@
 import Foundation
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import Observation
 #if os(iOS)
 import UIKit
@@ -103,7 +103,7 @@ final class AppModel {
         sealNewFiles()
         applyAudioRetention()
         #if DEBUG
-        if let id = ProcessInfo.processInfo.environment["LOCALSCRIBE_SELECT"].flatMap(UUID.init(uuidString:)) { selection = id }
+        if let id = ProcessInfo.processInfo.environment["HUSHPAD_SELECT"].flatMap(UUID.init(uuidString:)) { selection = id }
         #endif
         if fellBack {
             post("Your library folder “\(location.url.lastPathComponent)” isn't available, so new meetings are saved on this device for now.",

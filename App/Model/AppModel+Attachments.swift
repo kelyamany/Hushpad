@@ -1,6 +1,6 @@
 import Foundation
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 
 /// A meeting's screenshots and added images.
 extension AppModel {
