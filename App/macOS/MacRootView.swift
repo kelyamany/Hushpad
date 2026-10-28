@@ -1,6 +1,6 @@
 #if os(macOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Two columns: the sidebar (all meetings, folders), then one main area that shows the list of meetings
@@ -42,7 +42,7 @@ struct MacRootView: View {
         .onChange(of: scenePhase) { _, phase in if phase == .active { model.reload() } }
         #if DEBUG
         .onChange(of: model.sections.count) {
-            if ProcessInfo.processInfo.environment["LOCALSCRIBE_SNAPSHOT_SELECT"] != nil, model.selection == nil {
+            if ProcessInfo.processInfo.environment["HUSHPAD_SNAPSHOT_SELECT"] != nil, model.selection == nil {
                 model.selection = model.sections.first?.recordings.first?.id
             }
         }

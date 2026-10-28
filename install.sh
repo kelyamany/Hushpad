@@ -8,8 +8,8 @@
 #   ./install.sh --skip-tests    don't run the test suite
 #   ./install.sh --team ABCDE12345   your Apple Development team ID (auto-detected if omitted)
 #   ./install.sh --tidy          only remove stray copies of the app (Launchpad duplicates, old builds)
-#   ./install.sh --uninstall     remove Hushpad from this Mac (asks before touching recordings)
-#   ./install.sh --uninstall --iphone   …and from the connected iPhone (and its Watch)
+#   ./uninstall.sh               remove Hushpad (and LocalScribe, its old name) from this Mac; your meetings stay
+#   ./uninstall.sh --iphone      …and from the connected iPhone (and its Watch)
 #
 # Installing never touches your recordings, settings or downloaded models.
 set -euo pipefail
@@ -17,10 +17,13 @@ set -euo pipefail
 ROOT="${0:A:h}"
 BUILD="$ROOT/build.noindex"          # .noindex: Spotlight and Launchpad ignore build products
 APP_NAME="Hushpad"
-OLD_DEST="/Applications/LocalScribe.app"   # the app's name before 1.0; same app, same data
-BUNDLE_ID="dev.localscribe.app"
+BUNDLE_ID="dev.hushpad.app"
 DEST="/Applications/$APP_NAME.app"
-SUPPORT="$HOME/Library/Application Support/LocalScribe"
+SUPPORT="$HOME/Library/Application Support/Hushpad"
+# Before 1.1 the app's hidden names still said LocalScribe. The app moves its data over on first launch (LegacyInstall).
+OLD_DEST="/Applications/LocalScribe.app"
+OLD_BUNDLE_ID="dev.localscribe.app"
+OLD_SUPPORT="$HOME/Library/Application Support/LocalScribe"
 LSREGISTER=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister
 
 do_mac=1 do_iphone=0 clean=0 tests=1 team="" mode=install
@@ -103,7 +106,9 @@ quit_mac_app() {
       pgrep -qf "^$OLD_DEST/Contents/MacOS/LocalScribe"
   }
   if mac_running; then
-    osascript -e "tell application id \"$BUNDLE_ID\" to quit" >/dev/null 2>&1 || true
+    for id in "$BUNDLE_ID" "$OLD_BUNDLE_ID"; do
+      osascript -e "tell application id \"$id\" to quit" >/dev/null 2>&1 || true
+    done
     for _ in {1..20}; do mac_running || break; sleep 0.5; done
     mac_running && fail "Hushpad is still open (recording, or a window waiting for you?). Quit it and rerun."
     ok "Closed the running app"
@@ -152,17 +157,21 @@ if [[ $mode == tidy ]]; then
 fi
 
 # ── Uninstall ────────────────────────────────────────────────────────────────
+# Removes everything Hushpad (or LocalScribe, its old name) put on this Mac, except your meetings: the private library
+# ("Recordings") and unfinished recordings ("In Progress") stay where they are, and so does a folder you chose yourself.
 if [[ $mode == uninstall ]]; then
+  ids=("$BUNDLE_ID" "$OLD_BUNDLE_ID" dev.hushpad.demo dev.localscribe.demo)
   step "Uninstalling Hushpad"
   print "  This removes:"
   if (( do_mac )); then
-    info "• the app ($DEST) and every other copy macOS knows about"
-    info "• its settings, permissions and saved window state"
-    info "• downloaded speech models ($(du -sh "$SUPPORT/Models" 2>/dev/null | cut -f1 || echo "none"))"
+    info "• the app (Hushpad.app, and LocalScribe.app from before) and every other copy macOS knows about"
+    info "• its settings, permissions, caches and saved window state, under both names"
+    info "• the API keys it saved on this Mac"
+    info "• downloaded speech models ($(du -shc "$SUPPORT/Models" "$OLD_SUPPORT/Models" 2>/dev/null | tail -1 | cut -f1))"
     info "• build files in this folder"
   fi
-  if (( do_iphone )); then info "• the iPhone app, its Watch app and everything stored only on that iPhone"; fi
-  print "  Your recordings are kept unless you say otherwise in a moment."
+  if (( do_iphone )); then info "• the iPhone app, its Watch app and everything stored only on that iPhone (you'll be asked)"; fi
+  print "  Your meetings stay. So does your library encryption key, which encrypted meetings need."
   ask "Continue?" || { print "  Nothing was changed."; exit 0; }
 
   if (( do_mac )); then
@@ -173,52 +182,50 @@ if [[ $mode == uninstall ]]; then
     tidy "/nonexistent"
     "$LSREGISTER" -u "$DEST" >/dev/null 2>&1 || true
 
-    if tccutil reset All "$BUNDLE_ID" >/dev/null 2>&1; then ok "Reset permissions (microphone, screen & system audio)"; fi
-    defaults delete "$BUNDLE_ID" >/dev/null 2>&1 || true
-    ok "Removed settings"
-    rm -rf "$HOME/Library/Saved Application State/$BUNDLE_ID.savedState" \
-           "$HOME/Library/Caches/$BUNDLE_ID" "$HOME/Library/HTTPStorages/$BUNDLE_ID" \
-           "$HOME/Library/HTTPStorages/$BUNDLE_ID.binarycookies" "$HOME/Library/WebKit/$BUNDLE_ID"
-    # Keys saved by older versions (this Mac only). A key in iCloud Keychain is shared with your iPhone.
-    # Only the API keys. The library key (account "library-key") stays: without it an encrypted library can't be opened again.
-    for account in openrouter-api-key opencode-go-api-key; do
-      while security delete-generic-password -s LocalScribe -a "$account" >/dev/null 2>&1; do :; done
+    for id in "${ids[@]}"; do
+      tccutil reset All "$id" >/dev/null 2>&1 || true
+      defaults delete "$id" >/dev/null 2>&1 || true
+      rm -rf "$HOME/Library/Saved Application State/$id.savedState" \
+             "$HOME/Library/Caches/$id" "$HOME/Library/HTTPStorages/$id" \
+             "$HOME/Library/HTTPStorages/$id.binarycookies" "$HOME/Library/WebKit/$id"
+    done
+    # Plain copies of encrypted meetings the app opened (a cache; the encrypted originals stay).
+    rm -rf "${TMPDIR:-/tmp}"/{Hushpad,LocalScribe}{,-Demo}-open
+    ok "Removed settings, permissions (microphone, screen & system audio) and caches"
+
+    # Keys kept on this Mac only. The library key (account "library-key") stays: without it an encrypted library
+    # can't be opened again.
+    for service in Hushpad LocalScribe "Hushpad Demo"; do
+      for account in openrouter-api-key opencode-go-api-key; do
+        while security delete-generic-password -s "$service" -a "$account" >/dev/null 2>&1; do :; done
+      done
     done
     ok "Removed the API keys stored on this Mac"
-    info "Keys synced through iCloud Keychain stay for your other devices; delete “LocalScribe” in the Passwords app to remove them everywhere. Your library encryption key is kept on purpose."
+    info "Keys synced through iCloud Keychain stay for your other devices; delete “Hushpad” and “LocalScribe” in the Passwords app to remove them everywhere."
 
-    if [[ -d "$SUPPORT/Models" ]]; then rm -rf "$SUPPORT/Models"; ok "Removed speech models"; fi
-
-    local_count=$(find "$SUPPORT/Recordings" -name recording.json -maxdepth 2 2>/dev/null | wc -l | tr -d ' ')
-    staged=$(find "$SUPPORT/In Progress" -name recording.json -maxdepth 2 2>/dev/null | wc -l | tr -d ' ')
-    total=$((local_count + staged))
-    if (( total > 0 )); then
-      if ask "Also delete the $total recording(s) stored on this Mac (in $SUPPORT)? They go to the Trash."; then
-        trash_dir="$HOME/.Trash/Hushpad Recordings $(date +%Y-%m-%d\ %H%M%S)"
-        mkdir -p "$trash_dir"
-        if [[ -d "$SUPPORT/Recordings" ]]; then mv "$SUPPORT/Recordings" "$trash_dir/"; fi
-        if [[ -d "$SUPPORT/In Progress" ]]; then mv "$SUPPORT/In Progress" "$trash_dir/"; fi
-        rmdir "$SUPPORT" 2>/dev/null || true
-        ok "Moved your recordings to the Trash"
-      else
-        ok "Kept your recordings in $SUPPORT"
-      fi
-    else
-      rm -rf "$SUPPORT"
-    fi
+    # App data: everything except the meetings.
+    for dir in "$SUPPORT" "$OLD_SUPPORT"; do
+      [[ -d "$dir" ]] || continue
+      for item in "$dir"/*(DN); do
+        [[ "${item:t}" == "Recordings" || "${item:t}" == "In Progress" ]] && continue
+        rm -rf "$item"
+      done
+      rmdir "$dir/Recordings" "$dir/In Progress" "$dir" 2>/dev/null || true
+      if [[ -d "$dir" ]]; then ok "Removed speech models and app data; your meetings stay in $dir"; else ok "Removed $dir"; fi
+    done
     info "A library folder you chose yourself (for example in iCloud Drive) is never touched."
 
-    rm -rf "$BUILD" "$ROOT/build" "$ROOT/dist" "$ROOT/LocalScribeKit/.build"
-    rm -rf ~/Library/Developer/Xcode/DerivedData/LocalScribe-*
+    rm -rf "$BUILD" "$ROOT/build" "$ROOT/dist" "$ROOT/HushpadKit/.build" "$ROOT/LocalScribeKit/.build"
+    rm -rf ~/Library/Developer/Xcode/DerivedData/{Hushpad,LocalScribe}-*(N)
     ok "Removed build files"
   fi
 
   if (( do_iphone )); then
     step "Uninstalling from iPhone"
     find_iphone
-    warn "Recordings kept only on the iPhone (not in a synced folder) are deleted with the app."
+    warn "Meetings kept only on the iPhone (not in a synced folder) are deleted with the app. Move them to an iCloud Drive library first."
     if ask "Remove Hushpad from $device_name?"; then
-      for bundle in $(iphone_copies) "$BUNDLE_ID"; do
+      for bundle in $(iphone_copies) "$BUNDLE_ID" "$OLD_BUNDLE_ID"; do
         xcrun devicectl device uninstall app --device "$device_id" "$bundle" >/dev/null 2>&1 && ok "Removed $bundle" || true
       done
       info "The Watch app is removed together with the iPhone app."
@@ -252,20 +259,20 @@ if [[ -n "$identity" ]]; then ok "Signing as $identity${team:+ (team $team)}"; e
 # ── Clean ────────────────────────────────────────────────────────────────────
 if (( clean )); then
   step "Cleaning build caches"
-  rm -rf "$BUILD" "$ROOT/build" "$ROOT/dist" "$ROOT/LocalScribeKit/.build"
-  rm -rf ~/Library/Developer/Xcode/DerivedData/LocalScribe-*
+  rm -rf "$BUILD" "$ROOT/build" "$ROOT/dist" "$ROOT/HushpadKit/.build" "$ROOT/LocalScribeKit/.build"
+  rm -rf ~/Library/Developer/Xcode/DerivedData/{Hushpad,LocalScribe}-*(N)
   ok "Clean"
 fi
 mkdir -p "$BUILD"
 
 step "Generating the Xcode project"
 xcodegen generate --quiet
-ok "LocalScribe.xcodeproj is up to date"
+ok "Hushpad.xcodeproj is up to date"
 
 # ── Tests ────────────────────────────────────────────────────────────────────
 if (( tests )); then
   step "Running tests"
-  if (cd LocalScribeKit && swift test >"$BUILD/tests.log" 2>&1); then
+  if (cd HushpadKit && swift test >"$BUILD/tests.log" 2>&1); then
     ok "$(grep -E 'Test run with' "$BUILD/tests.log" | tail -1 | sed -E 's/.*(Test run with [0-9]+ tests).*/\1/') passed"
   else
     grep -E "✘|error:" "$BUILD/tests.log" | head -15
@@ -277,13 +284,13 @@ fi
 if (( do_mac )); then
   step "Building for Mac (Release)"
   mac_build() {
-    xcb -project LocalScribe.xcodeproj -scheme LocalScribe -configuration Release \
+    xcb -project Hushpad.xcodeproj -scheme Hushpad -configuration Release \
         -destination 'platform=macOS' -derivedDataPath "$BUILD" "$@" build
   }
   signed=none
   if [[ -n "$identity" && -n "$team" ]]; then
     team_sign=(CODE_SIGN_STYLE=Automatic CODE_SIGN_IDENTITY="Apple Development" DEVELOPMENT_TEAM="$team" -allowProvisioningUpdates)
-    if mac_build "${team_sign[@]}" LOCALSCRIBE_MAC_ENTITLEMENTS=App/LocalScribe-Keychain.entitlements; then
+    if mac_build "${team_sign[@]}" HUSHPAD_MAC_ENTITLEMENTS=App/Hushpad-Keychain.entitlements; then
       signed=keychain
     elif mac_build "${team_sign[@]}"; then
       signed=team
@@ -313,6 +320,10 @@ if (( do_mac )); then
     rm -rf "$OLD_DEST"
     ok "Removed the old LocalScribe.app (Hushpad replaces it; your meetings and settings stay)"
   fi
+  if defaults read "$OLD_BUNDLE_ID" >/dev/null 2>&1 && ! defaults read "$BUNDLE_ID" >/dev/null 2>&1; then
+    info "Hushpad moves your meetings, settings and models over from its old name when it opens."
+    info "macOS treats it as a new app, so allow the microphone, screen and system audio again when asked."
+  fi
   tidy
   open "$DEST"
   ok "Launched"
@@ -328,7 +339,7 @@ if (( do_iphone )); then
   # Building for this iPhone (not generic iOS) lets Xcode add it to the provisioning profile.
   ios_destination="generic/platform=iOS"
   [[ -n "$device_udid" ]] && ios_destination="id=$device_udid"
-  xcb -project LocalScribe.xcodeproj -scheme LocalScribe -configuration Release \
+  xcb -project Hushpad.xcodeproj -scheme Hushpad -configuration Release \
       -destination "$ios_destination" -derivedDataPath "$BUILD" \
       CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM="$team" -allowProvisioningUpdates -allowProvisioningDeviceRegistration build \
       || fail "Build failed. Full log: $BUILD/last-build.log"
@@ -336,9 +347,16 @@ if (( do_iphone )); then
   [[ -d "$ios_app" ]] || fail "iPhone build not found."
   ok "Built"
 
-  # Older builds under another bundle id would otherwise sit next to this one on the Home Screen.
+  # Older builds under another bundle id would otherwise sit next to this one on the Home Screen. The copy from before
+  # the rename keeps its meetings in its own sandbox, which the new app can't read, so it's only removed if you say so.
   for bundle in $(iphone_copies); do
-    [[ "$bundle" == "$BUNDLE_ID" || "$bundle" == "$BUNDLE_ID".* ]] && continue
+    [[ "$bundle" == "$BUNDLE_ID" || "$bundle" == "$BUNDLE_ID".* || "$bundle" == "$OLD_BUNDLE_ID".* ]] && continue
+    if [[ "$bundle" == "$OLD_BUNDLE_ID" ]]; then
+      warn "The previous Hushpad (from before the rename) is still on $device_name, with any meetings stored only there."
+      info "To keep them: in the old app pick an iCloud Drive folder under Settings › General › Library, then pick the same"
+      info "folder in the new app. Afterwards delete the old app, or rerun with --iphone and say yes below."
+      ask "Remove the old copy now? Meetings stored only in it are deleted with it." || continue
+    fi
     xcrun devicectl device uninstall app --device "$device_id" "$bundle" >/dev/null 2>&1 && ok "Removed an older copy ($bundle)" || true
   done
 

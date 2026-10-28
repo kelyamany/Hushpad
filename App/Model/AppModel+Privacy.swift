@@ -1,7 +1,7 @@
 import CryptoKit
 import Foundation
 import LocalAuthentication
-import LocalScribeKit
+import HushpadKit
 import Observation
 
 /// State for the privacy features: app lock and library encryption.

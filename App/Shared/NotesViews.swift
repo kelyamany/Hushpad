@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// A running or failed notes job for a meeting: progress, the notes as they stream in, or what went wrong.

@@ -122,10 +122,10 @@ MobileBackups.trash
 tmbootpicker.efi
 
 .DS_Store
-LocalScribeKit/.build/
+HushpadKit/.build/
 build.noindex/
-LocalScribe.xcodeproj/xcuserdata/
-LocalScribe.xcodeproj/project.xcworkspace/xcuserdata/
+Hushpad.xcodeproj/xcuserdata/
+Hushpad.xcodeproj/project.xcworkspace/xcuserdata/
 DerivedData/
 /Fixtures/
 build/

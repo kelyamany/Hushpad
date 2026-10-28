@@ -33,6 +33,6 @@
 		<string>audio</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>dev.localscribe.app</string>
+	<string>dev.hushpad.app</string>
 </dict>
 </plist>

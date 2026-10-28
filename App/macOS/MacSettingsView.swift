@@ -1,6 +1,6 @@
 #if os(macOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// The Settings window (⌘,): the shared pages as tabs, like a native Mac app.

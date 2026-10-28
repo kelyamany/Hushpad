@@ -1,6 +1,6 @@
 import ImageIO
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// A transcript prepared for display once (sorted, speakers indexed), so scrolling and playback never redo it.

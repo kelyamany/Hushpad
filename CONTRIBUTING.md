@@ -24,8 +24,8 @@ These keep Hushpad what it is:
 See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for setup, the project layout, the design system and the tests.
 
 - Keep changes focused, and follow the style of the code around you.
-- Add or update tests in `LocalScribeKit/Tests` for logic changes.
-- Run `cd LocalScribeKit && swift test` and build the Mac and iOS apps before opening a pull request.
+- Add or update tests in `HushpadKit/Tests` for logic changes.
+- Run `cd HushpadKit && swift test` and build the Mac and iOS apps before opening a pull request.
 - UI changes: follow [DESIGN.md](DESIGN.md) and include a screenshot (with made-up meetings, never real ones).
 
 By contributing, you agree that your contributions are licensed under the [MIT License](LICENSE).

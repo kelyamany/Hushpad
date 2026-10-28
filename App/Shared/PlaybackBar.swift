@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Play / pause, scrubber, skip and speed. Floats over the bottom of the transcript.

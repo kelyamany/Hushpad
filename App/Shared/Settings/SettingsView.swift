@@ -1,5 +1,5 @@
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// The Settings pages, the same five on Mac (tabs) and iPhone (a list of pages). Each page is short: a label per

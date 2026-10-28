@@ -1,6 +1,6 @@
 #if os(iOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// Four short pages: what it is, syncing with the Mac, permissions, the model. Every page can be skipped;

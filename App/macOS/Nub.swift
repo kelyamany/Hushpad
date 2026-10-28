@@ -1,7 +1,7 @@
 #if os(macOS)
 import AppKit
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import Observation
 import SwiftUI
 
@@ -40,8 +40,8 @@ final class NubController {
 
     var content: Content {
         #if DEBUG
-        // Layout review without a call: LOCALSCRIBE_NUB=recording | prompt | ended | quiet
-        switch ProcessInfo.processInfo.environment["LOCALSCRIBE_NUB"] {
+        // Layout review without a call: HUSHPAD_NUB=recording | prompt | ended | quiet
+        switch ProcessInfo.processInfo.environment["HUSHPAD_NUB"] {
         case "recording": return .recording
         case "prompt": return .prompt(MeetingApp(name: "Zoom"))
         case "ended": return .callEnded(Date().addingTimeInterval(15))

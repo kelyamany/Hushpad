@@ -36,7 +36,7 @@ Hushpad uses the SpeakerKit models as published, without changes.
 
 ## Fonts
 
-Bundled, unmodified, in `LocalScribeKit/Sources/LocalScribeUI/Fonts`, each next to its full licence text.
+Bundled, unmodified, in `HushpadKit/Sources/HushpadUI/Fonts`, each next to its full licence text.
 
 | Font | Licence | Copyright |
 |---|---|---|

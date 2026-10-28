@@ -1,6 +1,6 @@
 import AVFoundation
 import Foundation
-import LocalScribeCore
+import HushpadCore
 import Observation
 
 /// Records on the Watch, then hands the audio to the iPhone, which transcribes it.

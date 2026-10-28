@@ -1,6 +1,6 @@
 #if os(iOS)
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 /// One meeting as a document, like on the Mac: serif title, quiet meta line, then Notes · Transcript · Attachments.

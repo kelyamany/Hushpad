@@ -1,0 +1,980 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		096646978C1E99A113FFE9F7 /* NotesViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5516EEE60A9C76F665C10CC /* NotesViews.swift */; };
+		0C7C6CEA7B545A72CD76DEAB /* WindowPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE8721903D908EF0B5328D /* WindowPrivacy.swift */; };
+		0D158FD2F66B297827E298FE /* SpeakerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E22B8BADD59D3F571A789D /* SpeakerEditor.swift */; };
+		167626419949EAFB5D307181 /* NotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7468071681A4C2A7A60942D3 /* NotesService.swift */; };
+		30212281CEFC0B1D7596CEC9 /* RecordingSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095DA2A85BCFFA9C339DF91 /* RecordingSettings.swift */; };
+		366D89DE70ACDBE1496A1609 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C4DBC8E2C6DF85C48EF9A6 /* Notifier.swift */; };
+		39CCC2CA8D95132CFB112E91 /* MacAttachmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1821F7EB71619C565D5BE4 /* MacAttachmentsView.swift */; };
+		3A6CE48A2001720C9C978885 /* MacNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C26A4A93C7F8AB2798F50D1 /* MacNotesView.swift */; };
+		3C6A19F0DFE96B4B51DAB06F /* MeetingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044E8CA8E2362D64EBD180B /* MeetingDetail.swift */; };
+		3EE54E07F492EA4FD6D620F5 /* WatchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05605A9DF0EBB190ACB4CBFE /* WatchLink.swift */; };
+		441C0EF00C0E99076EA43389 /* EditingFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54BE9145E0EA14BC6F8217 /* EditingFields.swift */; };
+		44AD0FCC5F54ED22A7BF8BB0 /* HushpadUI in Frameworks */ = {isa = PBXBuildFile; productRef = 57AD7BE6129BF2F8D9E8FA99 /* HushpadUI */; };
+		452C62852E09D6AA63943993 /* GranolaImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E795FEA857C9D3072F0A13F8 /* GranolaImportView.swift */; };
+		4EF23F8C0436E86AB6203CCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233F85051F747CF38F16CEAC /* Assets.xcassets */; };
+		50B277B801E799C17B6459E7 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA6FD27DFA90D520E14745C /* CameraPicker.swift */; };
+		5322650B0B66414D7481920D /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFE85488B1C457F03C07D9E /* GeneralSettings.swift */; };
+		5555B3FCF8986F8739251445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 364D5838D688F7B0ABBE7DE1 /* Assets.xcassets */; };
+		563BAF38F4677AD36F49AE12 /* MacRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2823C0167CB8330A72C8C5A /* MacRootView.swift */; };
+		578E1CD2EF93D30CDA9732F3 /* PhoneLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA25A86BC8D86BF663B74A22 /* PhoneLink.swift */; };
+		5E62CCEFD867C17D4B80656C /* WatchRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFDC389F9B681DB89DED71A /* WatchRecorder.swift */; };
+		6DF04FEF216F859302D1AEAA /* AppModel+Transcripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3CFBCF035099922C0857B8 /* AppModel+Transcripts.swift */; };
+		6FE62368941B2DF4CD633096 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83EBC199663F537639988A5F /* Assets.xcassets */; };
+		71725955E6B628931E2EC074 /* HushpadWatch.app in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 055F2870DB13D59EDA485D66 /* HushpadWatch.app */; platformFilters = (ios, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		71C6B8666FE0BA4DE64C6C25 /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81294D088B66536DABE332BC /* MacSettingsView.swift */; };
+		74506E59F55E4449204FB9CE /* AppModel+Transcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15BBB087D7A90533E38BA4 /* AppModel+Transcription.swift */; };
+		76A34AF0C32D638BB1C9145F /* TranscriptContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B12A463714FBC759ED4937 /* TranscriptContent.swift */; };
+		770D88EE483990396B3E90D7 /* PerfProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292A8528E9FBD1609E350F5 /* PerfProbe.swift */; };
+		7A813BF1AFCB71525A1F1921 /* AppModel+Import.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B6A2301D9485F50097FEB /* AppModel+Import.swift */; };
+		7A8D56D0DE1A65108C201B9C /* RecordingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF67E86632421BFCD9E65D /* RecordingActivity.swift */; };
+		7B16D7141AF4ACEE5E4043B4 /* LibraryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CA0F3F09A2B5C6BCF97A7 /* LibraryStatus.swift */; };
+		7EC8F8F0E827A2470DF57C1A /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42EBD3A300B0170E416183 /* AppModel.swift */; };
+		80714508C08CA93C72B10AD8 /* PhoneRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201FCA5677A735C07FDE717 /* PhoneRootView.swift */; };
+		8515AA6AC9F745E730B5FA9D /* LiveTranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA6A200D432D9C13E0382A /* LiveTranscriptView.swift */; };
+		8D7A52342773C28DAAE81F02 /* HushpadWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2637B0B4C521DCB9869A167E /* HushpadWidgets.appex */; platformFilters = (ios, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		954E72140F21F039307AFB4C /* RecordingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF67E86632421BFCD9E65D /* RecordingActivity.swift */; };
+		9784AA3D0F4FF5F73AE3B0D3 /* LibraryComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC65ED2D2E8E7DD40EE8725 /* LibraryComponents.swift */; };
+		9893AB7E31856418AB7F05F4 /* Nub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0081A075398341489D2DE4 /* Nub.swift */; };
+		98D9BB2CCFC31B33E20FB98C /* HushpadCore in Frameworks */ = {isa = PBXBuildFile; productRef = BE85C2C85F6DD6665B35766B /* HushpadCore */; };
+		9A136BD756198F6E9D3EC990 /* AskViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D30D16DA5A875BC01C242 /* AskViews.swift */; };
+		9B877CD9782224CB202D7E6F /* AppModel+Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5578B5E7B38315E0CDA3AB2C /* AppModel+Notes.swift */; };
+		9D0A752AD5C35A3A8A60C26A /* TranscriptionQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C977247CF2DFA4CC3F360C5 /* TranscriptionQueue.swift */; };
+		9D3875F9C333B514C2B4F203 /* WatchViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532C35E0EBA65A5A3F61FC0 /* WatchViews.swift */; };
+		A0A4EB173ED3DE9D93CC7349 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE940DCB4DD026438525B9 /* FlowLayout.swift */; };
+		A288487A7246E58DEECC1674 /* PrivacyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F569D216AA8D304D4E927 /* PrivacyViews.swift */; };
+		A4D861EBEF61785212138E86 /* AppModel+Attachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF8632E013AF9AD3A34E7DF /* AppModel+Attachments.swift */; };
+		A4F10DDB6500941F53608FD7 /* DebugSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5672E63578068EF8EAD5B9D /* DebugSnapshot.swift */; };
+		A52E0FD0FF3D08B26FECA80E /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BF8EE6A1AD8D30B17DBFC5 /* LanguagePicker.swift */; };
+		A80BAA62371DE28200DB665A /* NoticeBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D8B598EBCA8F5058082F95 /* NoticeBanner.swift */; };
+		AC2ACF0717555CAA9857D52E /* NubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22928BE5A45011FC59C1167E /* NubViews.swift */; };
+		AEDF544354F3AC0848293DB5 /* MergeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC22D20D678CBCACAF2F51D1 /* MergeSheet.swift */; };
+		B26493C534C61160D385AC03 /* HushpadWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C630803A7F753ECB691A44FF /* HushpadWidgets.swift */; };
+		B54F6C438C735C999D186C01 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DE05F54F8A96C0F8BBCB50 /* ChatService.swift */; };
+		B5EAA317F1A564B7F1713865 /* NotesModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8643AC7961491AB4241098A /* NotesModelSection.swift */; };
+		B6491E1A0EF9FC4A225436F0 /* HushpadKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3C5A64D2AD3B752B9ED44656 /* HushpadKit */; };
+		BC1B184DD9882DDB7EF1F274 /* NetworkGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD2BD2DAA101C8F93DFF5D /* NetworkGuard.swift */; };
+		C02F6C8D500BA41E6AE08F54 /* PrivacySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C7C5CF4E06E71E623668CC /* PrivacySettings.swift */; };
+		C1025E105F10AC6B526BEAEB /* RecordingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE0E2C59E59BE473131218 /* RecordingScreen.swift */; };
+		C1D9847F57BB963ABF3FC72E /* PhoneOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DC72B36F8AC1DCEF340D0 /* PhoneOnboardingView.swift */; };
+		C4B48BF1BB37350289181094 /* HushpadWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DFA58FA5C6C77DC8F9911 /* HushpadWatchApp.swift */; };
+		C7FBF6DF5F2B4C35F2BF6996 /* BackgroundWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F1F3A3799E4E54F1148A6E /* BackgroundWork.swift */; };
+		CFD85363307A9F2BCC259AAD /* HushpadUI in Frameworks */ = {isa = PBXBuildFile; productRef = 596F50EF314F8182D989FD8F /* HushpadUI */; };
+		D38863CD8AFCC79DE843FBB5 /* MeetingShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42A84201EE05989893AC8F /* MeetingShared.swift */; };
+		D389D74A9E34DD12A0F807AC /* PhoneDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745609862F2544B3116D341 /* PhoneDetailView.swift */; };
+		D5308424952C8BD8950DD264 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF973C7C31D6818D47DEB335 /* AppSettings.swift */; };
+		D86051801412BCDFD1A2B3B1 /* MacOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B4990B8ACF36107B7FE484 /* MacOnboardingView.swift */; };
+		DC4DD713E308B6E093A0A569 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D971263D50807619F2D4C3B /* SettingsView.swift */; };
+		DC70A00740CC4BC712AFDF30 /* HushpadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28B256E3B9175BAC4CB812D /* HushpadApp.swift */; };
+		DD9A139309C6F137DEA83F34 /* PlaybackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4D36318A6824C316C87B4 /* PlaybackBar.swift */; };
+		E7E2F3E06361FE80CAFDBBF6 /* AppModel+Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564CCB98EF3CE85D25667C34 /* AppModel+Privacy.swift */; };
+		E8DCE6B9E2DFF3B572A70148 /* SettingsCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A31B5F93F448051CA6E3B2 /* SettingsCopy.swift */; };
+		F0973C1B2B77915E169B9F19 /* MacDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17E5DA12271075B1E4485A6 /* MacDetailView.swift */; };
+		F2B776C55E9179CCE021F709 /* LiveActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C89DFAF778FAB7ACE0BA8B1 /* LiveActivityController.swift */; };
+		F31FA5A5AEED820351468FB0 /* MeetingWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE273A6645D45C5D4ED8B5FF /* MeetingWatcher.swift */; };
+		F6FF29319FE6D5F31095854C /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3137B152FD1F937EB3355C86 /* Shortcuts.swift */; };
+		F88B78A452476F53F336C773 /* FolderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C712300CE5D464D80CFAE /* FolderViews.swift */; };
+		F8E0C3B35F6FA6C4A8941865 /* ModelsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A993B1C9CE7CE00E791D6 /* ModelsSettings.swift */; };
+		F9A44799BC9354EB6912C73F /* TranscribeAgainSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C447B0913CE0B7B252A0A6CC /* TranscribeAgainSheet.swift */; };
+		F9FB6FC4132602AA77296632 /* NotesSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560D033DA69BF7174748E22 /* NotesSettings.swift */; };
+		FEBC52FBD8658263380BA906 /* PlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038CA9B84FF8559C8B525AE6 /* PlaybackController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		371E7E0A242AE54902A8F0C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADC2AA8896D776488A26AB96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B98A3F605E4910CB6E5B2E98;
+			remoteInfo = HushpadWidgets;
+		};
+		834ED36950D578F9E9685F83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADC2AA8896D776488A26AB96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0922C818C898A682170C333C;
+			remoteInfo = HushpadWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0728A3D55598B42FA5EDFDCA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8D7A52342773C28DAAE81F02 /* HushpadWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE2DDFC666C22A6208E4C842 /* Embed Dependencies */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				71725955E6B628931E2EC074 /* HushpadWatch.app in Embed Dependencies */,
+			);
+			name = "Embed Dependencies";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01E22B8BADD59D3F571A789D /* SpeakerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerEditor.swift; sourceTree = "<group>"; };
+		038CA9B84FF8559C8B525AE6 /* PlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackController.swift; sourceTree = "<group>"; };
+		054DFA58FA5C6C77DC8F9911 /* HushpadWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushpadWatchApp.swift; sourceTree = "<group>"; };
+		055F2870DB13D59EDA485D66 /* HushpadWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HushpadWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05605A9DF0EBB190ACB4CBFE /* WatchLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchLink.swift; sourceTree = "<group>"; };
+		076063D869DCE6D42EEC38C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		09DE05F54F8A96C0F8BBCB50 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		0A54BE9145E0EA14BC6F8217 /* EditingFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingFields.swift; sourceTree = "<group>"; };
+		150DC72B36F8AC1DCEF340D0 /* PhoneOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOnboardingView.swift; sourceTree = "<group>"; };
+		22928BE5A45011FC59C1167E /* NubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NubViews.swift; sourceTree = "<group>"; };
+		233F85051F747CF38F16CEAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		23A31B5F93F448051CA6E3B2 /* SettingsCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCopy.swift; sourceTree = "<group>"; };
+		2637B0B4C521DCB9869A167E /* HushpadWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HushpadWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		27C7C5CF4E06E71E623668CC /* PrivacySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettings.swift; sourceTree = "<group>"; };
+		298D30D16DA5A875BC01C242 /* AskViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViews.swift; sourceTree = "<group>"; };
+		2C26A4A93C7F8AB2798F50D1 /* MacNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNotesView.swift; sourceTree = "<group>"; };
+		2C4B6A2301D9485F50097FEB /* AppModel+Import.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Import.swift"; sourceTree = "<group>"; };
+		3137B152FD1F937EB3355C86 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
+		3292A8528E9FBD1609E350F5 /* PerfProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfProbe.swift; sourceTree = "<group>"; };
+		35D8B598EBCA8F5058082F95 /* NoticeBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBanner.swift; sourceTree = "<group>"; };
+		364D5838D688F7B0ABBE7DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E15BBB087D7A90533E38BA4 /* AppModel+Transcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Transcription.swift"; sourceTree = "<group>"; };
+		477927250C0E65DB371FF767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		48B4990B8ACF36107B7FE484 /* MacOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOnboardingView.swift; sourceTree = "<group>"; };
+		5578B5E7B38315E0CDA3AB2C /* AppModel+Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Notes.swift"; sourceTree = "<group>"; };
+		564CCB98EF3CE85D25667C34 /* AppModel+Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Privacy.swift"; sourceTree = "<group>"; };
+		5BC65ED2D2E8E7DD40EE8725 /* LibraryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryComponents.swift; sourceTree = "<group>"; };
+		5D971263D50807619F2D4C3B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		65F1F3A3799E4E54F1148A6E /* BackgroundWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundWork.swift; sourceTree = "<group>"; };
+		6B1821F7EB71619C565D5BE4 /* MacAttachmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAttachmentsView.swift; sourceTree = "<group>"; };
+		6C977247CF2DFA4CC3F360C5 /* TranscriptionQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionQueue.swift; sourceTree = "<group>"; };
+		73B12A463714FBC759ED4937 /* TranscriptContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptContent.swift; sourceTree = "<group>"; };
+		73EA6A200D432D9C13E0382A /* LiveTranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriptView.swift; sourceTree = "<group>"; };
+		7468071681A4C2A7A60942D3 /* NotesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesService.swift; sourceTree = "<group>"; };
+		74C4DBC8E2C6DF85C48EF9A6 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		7BA6FD27DFA90D520E14745C /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		8095DA2A85BCFFA9C339DF91 /* RecordingSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSettings.swift; sourceTree = "<group>"; };
+		81294D088B66536DABE332BC /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
+		83EBC199663F537639988A5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83FD2BD2DAA101C8F93DFF5D /* NetworkGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGuard.swift; sourceTree = "<group>"; };
+		8C89DFAF778FAB7ACE0BA8B1 /* LiveActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityController.swift; sourceTree = "<group>"; };
+		8F42A84201EE05989893AC8F /* MeetingShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingShared.swift; sourceTree = "<group>"; };
+		910F68AED324889A767A6708 /* Hushpad.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Hushpad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9201FCA5677A735C07FDE717 /* PhoneRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRootView.swift; sourceTree = "<group>"; };
+		9560D033DA69BF7174748E22 /* NotesSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesSettings.swift; sourceTree = "<group>"; };
+		99BF8EE6A1AD8D30B17DBFC5 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
+		9BAE940DCB4DD026438525B9 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		9BF8632E013AF9AD3A34E7DF /* AppModel+Attachments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Attachments.swift"; sourceTree = "<group>"; };
+		9C42EBD3A300B0170E416183 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		9DDE0E2C59E59BE473131218 /* RecordingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingScreen.swift; sourceTree = "<group>"; };
+		A745609862F2544B3116D341 /* PhoneDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneDetailView.swift; sourceTree = "<group>"; };
+		A9CE8721903D908EF0B5328D /* WindowPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowPrivacy.swift; sourceTree = "<group>"; };
+		AA25A86BC8D86BF663B74A22 /* PhoneLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLink.swift; sourceTree = "<group>"; };
+		ADFE85488B1C457F03C07D9E /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		B28B256E3B9175BAC4CB812D /* HushpadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushpadApp.swift; sourceTree = "<group>"; };
+		B38CB6FB13FCC10FADA6CDE4 /* HushpadKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HushpadKit; path = HushpadKit; sourceTree = SOURCE_ROOT; };
+		B5516EEE60A9C76F665C10CC /* NotesViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViews.swift; sourceTree = "<group>"; };
+		BF3CA0F3F09A2B5C6BCF97A7 /* LibraryStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryStatus.swift; sourceTree = "<group>"; };
+		BF973C7C31D6818D47DEB335 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		C17E5DA12271075B1E4485A6 /* MacDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacDetailView.swift; sourceTree = "<group>"; };
+		C447B0913CE0B7B252A0A6CC /* TranscribeAgainSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeAgainSheet.swift; sourceTree = "<group>"; };
+		C532C35E0EBA65A5A3F61FC0 /* WatchViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchViews.swift; sourceTree = "<group>"; };
+		C630803A7F753ECB691A44FF /* HushpadWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushpadWidgets.swift; sourceTree = "<group>"; };
+		C6CF67E86632421BFCD9E65D /* RecordingActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingActivity.swift; sourceTree = "<group>"; };
+		C83C712300CE5D464D80CFAE /* FolderViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViews.swift; sourceTree = "<group>"; };
+		CBFDC389F9B681DB89DED71A /* WatchRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRecorder.swift; sourceTree = "<group>"; };
+		CC22D20D678CBCACAF2F51D1 /* MergeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeSheet.swift; sourceTree = "<group>"; };
+		CE0081A075398341489D2DE4 /* Nub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nub.swift; sourceTree = "<group>"; };
+		CE273A6645D45C5D4ED8B5FF /* MeetingWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingWatcher.swift; sourceTree = "<group>"; };
+		D044E8CA8E2362D64EBD180B /* MeetingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingDetail.swift; sourceTree = "<group>"; };
+		D73F569D216AA8D304D4E927 /* PrivacyViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViews.swift; sourceTree = "<group>"; };
+		E2823C0167CB8330A72C8C5A /* MacRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacRootView.swift; sourceTree = "<group>"; };
+		E4DE69313D11C7286D1C2E49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E795FEA857C9D3072F0A13F8 /* GranolaImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GranolaImportView.swift; sourceTree = "<group>"; };
+		E8643AC7961491AB4241098A /* NotesModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModelSection.swift; sourceTree = "<group>"; };
+		EC3CFBCF035099922C0857B8 /* AppModel+Transcripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Transcripts.swift"; sourceTree = "<group>"; };
+		F2B4D36318A6824C316C87B4 /* PlaybackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackBar.swift; sourceTree = "<group>"; };
+		F5672E63578068EF8EAD5B9D /* DebugSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSnapshot.swift; sourceTree = "<group>"; };
+		F88A993B1C9CE7CE00E791D6 /* ModelsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsSettings.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63CC7E9D553EF5831B8351CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98D9BB2CCFC31B33E20FB98C /* HushpadCore in Frameworks */,
+				CFD85363307A9F2BCC259AAD /* HushpadUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C07576050CC8E13525A68123 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6491E1A0EF9FC4A225436F0 /* HushpadKit in Frameworks */,
+				44AD0FCC5F54ED22A7BF8BB0 /* HushpadUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01304D3179831713A0E4A2DD /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				233F85051F747CF38F16CEAC /* Assets.xcassets */,
+				C630803A7F753ECB691A44FF /* HushpadWidgets.swift */,
+				076063D869DCE6D42EEC38C1 /* Info.plist */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		05B61F8D1BF00B95662D183A = {
+			isa = PBXGroup;
+			children = (
+				2189BC6BDAA5486F2AEA4718 /* App */,
+				A47784E688830E7FD1B97B42 /* Packages */,
+				94C573E1BBF47A7CB6E8FA39 /* Shared */,
+				5135551BE3103A1DC0074B0E /* Watch */,
+				01304D3179831713A0E4A2DD /* Widgets */,
+				4940396328E61EA61D8683D1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2189BC6BDAA5486F2AEA4718 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				364D5838D688F7B0ABBE7DE1 /* Assets.xcassets */,
+				B28B256E3B9175BAC4CB812D /* HushpadApp.swift */,
+				477927250C0E65DB371FF767 /* Info.plist */,
+				E0EB90CF0C3B66A8302E6874 /* iOS */,
+				A17E7EBE2A696F43AE2DB6E0 /* macOS */,
+				D2A78B2BE1FEF7647E73BB3D /* Model */,
+				88ED6647E3E8597345AAE617 /* Shared */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4940396328E61EA61D8683D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				910F68AED324889A767A6708 /* Hushpad.app */,
+				055F2870DB13D59EDA485D66 /* HushpadWatch.app */,
+				2637B0B4C521DCB9869A167E /* HushpadWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5135551BE3103A1DC0074B0E /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				83EBC199663F537639988A5F /* Assets.xcassets */,
+				054DFA58FA5C6C77DC8F9911 /* HushpadWatchApp.swift */,
+				E4DE69313D11C7286D1C2E49 /* Info.plist */,
+				AA25A86BC8D86BF663B74A22 /* PhoneLink.swift */,
+				CBFDC389F9B681DB89DED71A /* WatchRecorder.swift */,
+				C532C35E0EBA65A5A3F61FC0 /* WatchViews.swift */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		88ED6647E3E8597345AAE617 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				298D30D16DA5A875BC01C242 /* AskViews.swift */,
+				0A54BE9145E0EA14BC6F8217 /* EditingFields.swift */,
+				9BAE940DCB4DD026438525B9 /* FlowLayout.swift */,
+				C83C712300CE5D464D80CFAE /* FolderViews.swift */,
+				99BF8EE6A1AD8D30B17DBFC5 /* LanguagePicker.swift */,
+				5BC65ED2D2E8E7DD40EE8725 /* LibraryComponents.swift */,
+				BF3CA0F3F09A2B5C6BCF97A7 /* LibraryStatus.swift */,
+				73EA6A200D432D9C13E0382A /* LiveTranscriptView.swift */,
+				D044E8CA8E2362D64EBD180B /* MeetingDetail.swift */,
+				8F42A84201EE05989893AC8F /* MeetingShared.swift */,
+				CC22D20D678CBCACAF2F51D1 /* MergeSheet.swift */,
+				B5516EEE60A9C76F665C10CC /* NotesViews.swift */,
+				35D8B598EBCA8F5058082F95 /* NoticeBanner.swift */,
+				F2B4D36318A6824C316C87B4 /* PlaybackBar.swift */,
+				D73F569D216AA8D304D4E927 /* PrivacyViews.swift */,
+				01E22B8BADD59D3F571A789D /* SpeakerEditor.swift */,
+				C447B0913CE0B7B252A0A6CC /* TranscribeAgainSheet.swift */,
+				73B12A463714FBC759ED4937 /* TranscriptContent.swift */,
+				DE5DDA6EBB3D6FA0AD1590DA /* Settings */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		94C573E1BBF47A7CB6E8FA39 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C6CF67E86632421BFCD9E65D /* RecordingActivity.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A17E7EBE2A696F43AE2DB6E0 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				F5672E63578068EF8EAD5B9D /* DebugSnapshot.swift */,
+				E795FEA857C9D3072F0A13F8 /* GranolaImportView.swift */,
+				6B1821F7EB71619C565D5BE4 /* MacAttachmentsView.swift */,
+				C17E5DA12271075B1E4485A6 /* MacDetailView.swift */,
+				2C26A4A93C7F8AB2798F50D1 /* MacNotesView.swift */,
+				48B4990B8ACF36107B7FE484 /* MacOnboardingView.swift */,
+				E2823C0167CB8330A72C8C5A /* MacRootView.swift */,
+				81294D088B66536DABE332BC /* MacSettingsView.swift */,
+				CE0081A075398341489D2DE4 /* Nub.swift */,
+				22928BE5A45011FC59C1167E /* NubViews.swift */,
+				A9CE8721903D908EF0B5328D /* WindowPrivacy.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		A47784E688830E7FD1B97B42 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				B38CB6FB13FCC10FADA6CDE4 /* HushpadKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		D2A78B2BE1FEF7647E73BB3D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9C42EBD3A300B0170E416183 /* AppModel.swift */,
+				9BF8632E013AF9AD3A34E7DF /* AppModel+Attachments.swift */,
+				2C4B6A2301D9485F50097FEB /* AppModel+Import.swift */,
+				5578B5E7B38315E0CDA3AB2C /* AppModel+Notes.swift */,
+				564CCB98EF3CE85D25667C34 /* AppModel+Privacy.swift */,
+				3E15BBB087D7A90533E38BA4 /* AppModel+Transcription.swift */,
+				EC3CFBCF035099922C0857B8 /* AppModel+Transcripts.swift */,
+				BF973C7C31D6818D47DEB335 /* AppSettings.swift */,
+				09DE05F54F8A96C0F8BBCB50 /* ChatService.swift */,
+				CE273A6645D45C5D4ED8B5FF /* MeetingWatcher.swift */,
+				7468071681A4C2A7A60942D3 /* NotesService.swift */,
+				3292A8528E9FBD1609E350F5 /* PerfProbe.swift */,
+				038CA9B84FF8559C8B525AE6 /* PlaybackController.swift */,
+				6C977247CF2DFA4CC3F360C5 /* TranscriptionQueue.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DE5DDA6EBB3D6FA0AD1590DA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ADFE85488B1C457F03C07D9E /* GeneralSettings.swift */,
+				F88A993B1C9CE7CE00E791D6 /* ModelsSettings.swift */,
+				E8643AC7961491AB4241098A /* NotesModelSection.swift */,
+				9560D033DA69BF7174748E22 /* NotesSettings.swift */,
+				27C7C5CF4E06E71E623668CC /* PrivacySettings.swift */,
+				8095DA2A85BCFFA9C339DF91 /* RecordingSettings.swift */,
+				23A31B5F93F448051CA6E3B2 /* SettingsCopy.swift */,
+				5D971263D50807619F2D4C3B /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E0EB90CF0C3B66A8302E6874 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				65F1F3A3799E4E54F1148A6E /* BackgroundWork.swift */,
+				7BA6FD27DFA90D520E14745C /* CameraPicker.swift */,
+				8C89DFAF778FAB7ACE0BA8B1 /* LiveActivityController.swift */,
+				83FD2BD2DAA101C8F93DFF5D /* NetworkGuard.swift */,
+				74C4DBC8E2C6DF85C48EF9A6 /* Notifier.swift */,
+				A745609862F2544B3116D341 /* PhoneDetailView.swift */,
+				150DC72B36F8AC1DCEF340D0 /* PhoneOnboardingView.swift */,
+				9201FCA5677A735C07FDE717 /* PhoneRootView.swift */,
+				9DDE0E2C59E59BE473131218 /* RecordingScreen.swift */,
+				3137B152FD1F937EB3355C86 /* Shortcuts.swift */,
+				05605A9DF0EBB190ACB4CBFE /* WatchLink.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0922C818C898A682170C333C /* HushpadWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC7A762894153C80E5F7FA2E /* Build configuration list for PBXNativeTarget "HushpadWatch" */;
+			buildPhases = (
+				A4B9CEA9AB8B5AA5F513F3DD /* Sources */,
+				CF6CCAEE0AE35B87CDCCCEED /* Resources */,
+				63CC7E9D553EF5831B8351CB /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HushpadWatch;
+			packageProductDependencies = (
+				BE85C2C85F6DD6665B35766B /* HushpadCore */,
+				596F50EF314F8182D989FD8F /* HushpadUI */,
+			);
+			productName = HushpadWatch;
+			productReference = 055F2870DB13D59EDA485D66 /* HushpadWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		242835BAE588D03388F79A87 /* Hushpad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC1E44E15F9EE111C0BD7A29 /* Build configuration list for PBXNativeTarget "Hushpad" */;
+			buildPhases = (
+				66373CD4447EB0CCD95F7E55 /* Sources */,
+				89B75A82003AA7C8A1DAAA5F /* Resources */,
+				C07576050CC8E13525A68123 /* Frameworks */,
+				0728A3D55598B42FA5EDFDCA /* Embed Foundation Extensions */,
+				FE2DDFC666C22A6208E4C842 /* Embed Dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0C12FB4A21D404599BA005F /* PBXTargetDependency */,
+				B1C919362B7E5AED63A96C51 /* PBXTargetDependency */,
+			);
+			name = Hushpad;
+			packageProductDependencies = (
+				3C5A64D2AD3B752B9ED44656 /* HushpadKit */,
+				57AD7BE6129BF2F8D9E8FA99 /* HushpadUI */,
+			);
+			productName = Hushpad;
+			productReference = 910F68AED324889A767A6708 /* Hushpad.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B98A3F605E4910CB6E5B2E98 /* HushpadWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1C5580628B688888EB6B73E /* Build configuration list for PBXNativeTarget "HushpadWidgets" */;
+			buildPhases = (
+				0180683BBFCB7FE49929BA89 /* Sources */,
+				2BF24EA169CE2F2FBE4C65DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HushpadWidgets;
+			packageProductDependencies = (
+			);
+			productName = HushpadWidgets;
+			productReference = 2637B0B4C521DCB9869A167E /* HushpadWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADC2AA8896D776488A26AB96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0922C818C898A682170C333C = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					242835BAE588D03388F79A87 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					B98A3F605E4910CB6E5B2E98 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D74FD6C1D584CF201BDCDCA1 /* Build configuration list for PBXProject "Hushpad" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 05B61F8D1BF00B95662D183A;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B5DA80EB9EE33C1089562C2B /* XCLocalSwiftPackageReference "HushpadKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4940396328E61EA61D8683D1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				242835BAE588D03388F79A87 /* Hushpad */,
+				B98A3F605E4910CB6E5B2E98 /* HushpadWidgets */,
+				0922C818C898A682170C333C /* HushpadWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BF24EA169CE2F2FBE4C65DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EF23F8C0436E86AB6203CCC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89B75A82003AA7C8A1DAAA5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5555B3FCF8986F8739251445 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF6CCAEE0AE35B87CDCCCEED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FE62368941B2DF4CD633096 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0180683BBFCB7FE49929BA89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B26493C534C61160D385AC03 /* HushpadWidgets.swift in Sources */,
+				954E72140F21F039307AFB4C /* RecordingActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66373CD4447EB0CCD95F7E55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D861EBEF61785212138E86 /* AppModel+Attachments.swift in Sources */,
+				7A813BF1AFCB71525A1F1921 /* AppModel+Import.swift in Sources */,
+				9B877CD9782224CB202D7E6F /* AppModel+Notes.swift in Sources */,
+				E7E2F3E06361FE80CAFDBBF6 /* AppModel+Privacy.swift in Sources */,
+				74506E59F55E4449204FB9CE /* AppModel+Transcription.swift in Sources */,
+				6DF04FEF216F859302D1AEAA /* AppModel+Transcripts.swift in Sources */,
+				7EC8F8F0E827A2470DF57C1A /* AppModel.swift in Sources */,
+				D5308424952C8BD8950DD264 /* AppSettings.swift in Sources */,
+				9A136BD756198F6E9D3EC990 /* AskViews.swift in Sources */,
+				C7FBF6DF5F2B4C35F2BF6996 /* BackgroundWork.swift in Sources */,
+				50B277B801E799C17B6459E7 /* CameraPicker.swift in Sources */,
+				B54F6C438C735C999D186C01 /* ChatService.swift in Sources */,
+				A4F10DDB6500941F53608FD7 /* DebugSnapshot.swift in Sources */,
+				441C0EF00C0E99076EA43389 /* EditingFields.swift in Sources */,
+				A0A4EB173ED3DE9D93CC7349 /* FlowLayout.swift in Sources */,
+				F88B78A452476F53F336C773 /* FolderViews.swift in Sources */,
+				5322650B0B66414D7481920D /* GeneralSettings.swift in Sources */,
+				452C62852E09D6AA63943993 /* GranolaImportView.swift in Sources */,
+				DC70A00740CC4BC712AFDF30 /* HushpadApp.swift in Sources */,
+				A52E0FD0FF3D08B26FECA80E /* LanguagePicker.swift in Sources */,
+				9784AA3D0F4FF5F73AE3B0D3 /* LibraryComponents.swift in Sources */,
+				7B16D7141AF4ACEE5E4043B4 /* LibraryStatus.swift in Sources */,
+				F2B776C55E9179CCE021F709 /* LiveActivityController.swift in Sources */,
+				8515AA6AC9F745E730B5FA9D /* LiveTranscriptView.swift in Sources */,
+				39CCC2CA8D95132CFB112E91 /* MacAttachmentsView.swift in Sources */,
+				F0973C1B2B77915E169B9F19 /* MacDetailView.swift in Sources */,
+				3A6CE48A2001720C9C978885 /* MacNotesView.swift in Sources */,
+				D86051801412BCDFD1A2B3B1 /* MacOnboardingView.swift in Sources */,
+				563BAF38F4677AD36F49AE12 /* MacRootView.swift in Sources */,
+				71C6B8666FE0BA4DE64C6C25 /* MacSettingsView.swift in Sources */,
+				3C6A19F0DFE96B4B51DAB06F /* MeetingDetail.swift in Sources */,
+				D38863CD8AFCC79DE843FBB5 /* MeetingShared.swift in Sources */,
+				F31FA5A5AEED820351468FB0 /* MeetingWatcher.swift in Sources */,
+				AEDF544354F3AC0848293DB5 /* MergeSheet.swift in Sources */,
+				F8E0C3B35F6FA6C4A8941865 /* ModelsSettings.swift in Sources */,
+				BC1B184DD9882DDB7EF1F274 /* NetworkGuard.swift in Sources */,
+				B5EAA317F1A564B7F1713865 /* NotesModelSection.swift in Sources */,
+				167626419949EAFB5D307181 /* NotesService.swift in Sources */,
+				F9FB6FC4132602AA77296632 /* NotesSettings.swift in Sources */,
+				096646978C1E99A113FFE9F7 /* NotesViews.swift in Sources */,
+				A80BAA62371DE28200DB665A /* NoticeBanner.swift in Sources */,
+				366D89DE70ACDBE1496A1609 /* Notifier.swift in Sources */,
+				9893AB7E31856418AB7F05F4 /* Nub.swift in Sources */,
+				AC2ACF0717555CAA9857D52E /* NubViews.swift in Sources */,
+				770D88EE483990396B3E90D7 /* PerfProbe.swift in Sources */,
+				D389D74A9E34DD12A0F807AC /* PhoneDetailView.swift in Sources */,
+				C1D9847F57BB963ABF3FC72E /* PhoneOnboardingView.swift in Sources */,
+				80714508C08CA93C72B10AD8 /* PhoneRootView.swift in Sources */,
+				DD9A139309C6F137DEA83F34 /* PlaybackBar.swift in Sources */,
+				FEBC52FBD8658263380BA906 /* PlaybackController.swift in Sources */,
+				C02F6C8D500BA41E6AE08F54 /* PrivacySettings.swift in Sources */,
+				A288487A7246E58DEECC1674 /* PrivacyViews.swift in Sources */,
+				7A8D56D0DE1A65108C201B9C /* RecordingActivity.swift in Sources */,
+				C1025E105F10AC6B526BEAEB /* RecordingScreen.swift in Sources */,
+				30212281CEFC0B1D7596CEC9 /* RecordingSettings.swift in Sources */,
+				E8DCE6B9E2DFF3B572A70148 /* SettingsCopy.swift in Sources */,
+				DC4DD713E308B6E093A0A569 /* SettingsView.swift in Sources */,
+				F6FF29319FE6D5F31095854C /* Shortcuts.swift in Sources */,
+				0D158FD2F66B297827E298FE /* SpeakerEditor.swift in Sources */,
+				F9A44799BC9354EB6912C73F /* TranscribeAgainSheet.swift in Sources */,
+				76A34AF0C32D638BB1C9145F /* TranscriptContent.swift in Sources */,
+				9D0A752AD5C35A3A8A60C26A /* TranscriptionQueue.swift in Sources */,
+				3EE54E07F492EA4FD6D620F5 /* WatchLink.swift in Sources */,
+				0C7C6CEA7B545A72CD76DEAB /* WindowPrivacy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4B9CEA9AB8B5AA5F513F3DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B48BF1BB37350289181094 /* HushpadWatchApp.swift in Sources */,
+				578E1CD2EF93D30CDA9732F3 /* PhoneLink.swift in Sources */,
+				5E62CCEFD867C17D4B80656C /* WatchRecorder.swift in Sources */,
+				9D3875F9C333B514C2B4F203 /* WatchViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B0C12FB4A21D404599BA005F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+			);
+			target = B98A3F605E4910CB6E5B2E98 /* HushpadWidgets */;
+			targetProxy = 371E7E0A242AE54902A8F0C4 /* PBXContainerItemProxy */;
+		};
+		B1C919362B7E5AED63A96C51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+			);
+			target = 0922C818C898A682170C333C /* HushpadWatch */;
+			targetProxy = 834ED36950D578F9E9685F83 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		229882C5A74CEB9467C6AD6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "$(HUSHPAD_MAC_ENTITLEMENTS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_HARDENED_RUNTIME = YES;
+				HUSHPAD_MAC_ENTITLEMENTS = App/Hushpad.entitlements;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hushpad.app;
+				PRODUCT_NAME = Hushpad;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2CE492F2C9BC720392D997FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		5DE37DB3B4DA704A0BE566FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "$(HUSHPAD_MAC_ENTITLEMENTS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_HARDENED_RUNTIME = YES;
+				HUSHPAD_MAC_ENTITLEMENTS = App/Hushpad.entitlements;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hushpad.app;
+				PRODUCT_NAME = Hushpad;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		6CB7423A0FA39C68DF980944 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				INFOPLIST_FILE = Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hushpad.app.watchkitapp;
+				PRODUCT_NAME = Hushpad;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		97FC8BFC0B9B365748CED7B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hushpad.app.widgets;
+				PRODUCT_NAME = HushpadWidgets;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9BB43066C77CF417711099DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				INFOPLIST_FILE = Widgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hushpad.app.widgets;
+				PRODUCT_NAME = HushpadWidgets;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		A12D0B67C3328D412198A4DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		FC3833356F4AC8826FE5DB59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				INFOPLIST_FILE = Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hushpad.app.watchkitapp;
+				PRODUCT_NAME = Hushpad;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC1E44E15F9EE111C0BD7A29 /* Build configuration list for PBXNativeTarget "Hushpad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				229882C5A74CEB9467C6AD6A /* Debug */,
+				5DE37DB3B4DA704A0BE566FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D74FD6C1D584CF201BDCDCA1 /* Build configuration list for PBXProject "Hushpad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE492F2C9BC720392D997FE /* Debug */,
+				A12D0B67C3328D412198A4DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E1C5580628B688888EB6B73E /* Build configuration list for PBXNativeTarget "HushpadWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97FC8BFC0B9B365748CED7B8 /* Debug */,
+				9BB43066C77CF417711099DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EC7A762894153C80E5F7FA2E /* Build configuration list for PBXNativeTarget "HushpadWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC3833356F4AC8826FE5DB59 /* Debug */,
+				6CB7423A0FA39C68DF980944 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B5DA80EB9EE33C1089562C2B /* XCLocalSwiftPackageReference "HushpadKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = HushpadKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C5A64D2AD3B752B9ED44656 /* HushpadKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HushpadKit;
+		};
+		57AD7BE6129BF2F8D9E8FA99 /* HushpadUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HushpadUI;
+		};
+		596F50EF314F8182D989FD8F /* HushpadUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HushpadUI;
+		};
+		BE85C2C85F6DD6665B35766B /* HushpadCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HushpadCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = ADC2AA8896D776488A26AB96 /* Project object */;
+}

@@ -1,5 +1,5 @@
 import SwiftUI
-import LocalScribeKit
+import HushpadKit
 
 /// Auto, then the popular languages, then all the rest. A language the app doesn't know (a code from another device)
 /// is kept in the list so the current choice always has a matching tag.

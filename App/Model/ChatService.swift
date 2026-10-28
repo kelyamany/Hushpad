@@ -1,5 +1,5 @@
 import Foundation
-import LocalScribeKit
+import HushpadKit
 import Observation
 
 /// One question and its (streaming) answer.

@@ -1,5 +1,5 @@
 import AVFoundation
-import LocalScribeKit
+import HushpadKit
 import Observation
 
 /// Plays a recording with the room and call tracks mixed, so you can check what was really said.

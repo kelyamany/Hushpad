@@ -1,7 +1,7 @@
 #if os(macOS)
 import AppKit
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 import SwiftUI
 
 struct NubView: View {

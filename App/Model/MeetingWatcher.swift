@@ -1,6 +1,6 @@
 #if os(macOS)
 import Foundation
-import LocalScribeKit
+import HushpadKit
 import Observation
 
 /// "Meeting detected": when a call app starts using the microphone, the nub offers "Take notes".

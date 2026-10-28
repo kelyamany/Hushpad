@@ -19,8 +19,8 @@ jobs:
     runs-on: xcode-27
     steps:
       - uses: actions/checkout@v7
-      - name: Run LocalScribeKit tests
-        run: swift test --package-path LocalScribeKit
+      - name: Run HushpadKit tests
+        run: swift test --package-path HushpadKit
 
   build:
     name: Build ${{ matrix.name }}
@@ -30,17 +30,17 @@ jobs:
       matrix:
         include:
           - name: macOS
-            scheme: LocalScribe
+            scheme: Hushpad
             destination: platform=macOS
           - name: iOS
-            scheme: LocalScribe
+            scheme: Hushpad
             destination: generic/platform=iOS Simulator
           - name: watchOS
-            scheme: LocalScribeWatch
+            scheme: HushpadWatch
             destination: generic/platform=watchOS Simulator
     steps:
       - uses: actions/checkout@v7
       - name: Build
         run: >
-          xcodebuild -project LocalScribe.xcodeproj -scheme "${{ matrix.scheme }}"
+          xcodebuild -project Hushpad.xcodeproj -scheme "${{ matrix.scheme }}"
           -destination "${{ matrix.destination }}" CODE_SIGNING_ALLOWED=NO build -quiet

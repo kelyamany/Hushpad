@@ -1,6 +1,6 @@
 import Foundation
-import LocalScribeKit
-import LocalScribeUI
+import HushpadKit
+import HushpadUI
 
 /// Transcription jobs and speech models (the work happens in `TranscriptionQueue`).
 extension AppModel {
