@@ -101,6 +101,8 @@ public final class RecordingSession {
         if options.screenshots != .off {
             if !CGPreflightScreenCaptureAccess() {
                 warnings.append("Screenshots are off: allow Hushpad under System Settings › Privacy & Security › Screen & System Audio Recording.")
+            } else if options.screenshots == .automatic, !ScreenShareDetector.isTrusted {
+                warnings.append("Automatic screenshots are off: allow Hushpad under System Settings › Privacy & Security › Accessibility.")
             }
             let capturer = ScreenCapturer(recordingFolder: folder, startHostTime: startHostTime, mode: options.screenshots)
             screenCapturer = capturer

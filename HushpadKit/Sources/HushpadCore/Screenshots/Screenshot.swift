@@ -7,7 +7,7 @@ public enum ScreenshotMode: String, Codable, CaseIterable, Sendable, Identifiabl
     case off
     /// Only when you press the screenshot button (⌘⇧S on Mac, camera on iPhone).
     case manual
-    /// Also whenever the shared screen settles on new content (new slide, new document).
+    /// Also while someone else shares their screen, whenever it settles on new content (new slide, new document).
     case automatic
 
     public var id: String { rawValue }
@@ -15,7 +15,7 @@ public enum ScreenshotMode: String, Codable, CaseIterable, Sendable, Identifiabl
         switch self {
         case .off: "Off"
         case .manual: "Manual only"
-        case .automatic: "Automatic (on new content)"
+        case .automatic: "Automatic (when someone shares)"
         }
     }
 }

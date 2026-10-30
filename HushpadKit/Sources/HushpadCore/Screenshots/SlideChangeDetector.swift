@@ -1,9 +1,10 @@
 import CoreGraphics
 import Foundation
 
-/// A tiny grayscale thumbnail of a frame, used to tell "new slide" apart from "same slide" or "people moving on video".
+/// A small grayscale thumbnail of a frame, used to tell "new slide" apart from "same slide" or "still moving".
+/// Fine enough (64×36) that typing a few words changes some cells.
 public struct FrameSignature: Equatable, Sendable {
-    public static let columns = 32, rows = 18
+    public static let columns = 64, rows = 36
     public var lumas: [UInt8]
 
     public init(lumas: [UInt8]) {
@@ -24,15 +25,10 @@ public struct FrameSignature: Equatable, Sendable {
         lumas = pixels
     }
 
-    /// Fraction of cells whose brightness differs by more than `threshold` (0–255), among the cells in `mask`
-    /// (all cells when nil).
-    public func changedFraction(from other: FrameSignature, threshold: Int = 12, among mask: [Bool]? = nil) -> Double {
+    /// Fraction of cells whose brightness differs by more than `threshold` (0–255).
+    public func changedFraction(from other: FrameSignature, threshold: Int = 12) -> Double {
         guard lumas.count == other.lumas.count, !lumas.isEmpty else { return 1 }
-        let changed = changedCells(from: other, threshold: threshold)
-        let considered = mask.map { $0.filter { $0 }.count } ?? lumas.count
-        guard considered > 0 else { return 1 }
-        let count = changed.indices.filter { changed[$0] && (mask?[$0] ?? true) }.count
-        return Double(count) / Double(considered)
+        return Double(changedCells(from: other, threshold: threshold).filter { $0 }.count) / Double(lumas.count)
     }
 
     /// Which cells differ by more than `threshold`.
@@ -48,56 +44,51 @@ public struct FrameSignature: Equatable, Sendable {
     }
 }
 
-/// Decides when to keep a screenshot during screen sharing: once the picture settles on something
-/// substantially different from the last kept screenshot (a new slide, a new document, a scrolled page).
+/// Decides when to keep a screenshot of a shared screen: once the picture has stayed still for `settleSeconds`
+/// and is substantially different from the last kept screenshot (a new slide, a new document, a scrolled page).
 ///
-/// Meeting apps show webcam tiles next to what's being shared, and those never stop moving. Cells that keep changing
-/// are treated as video and left out when judging whether the rest has settled or is new. A picture that is mostly
-/// video (a gallery of webcams) is never kept.
+/// The buffer is what skips things in motion: while someone types, scrolls, plays a video or spins a 3D model, the
+/// picture keeps changing, so the timer keeps restarting and nothing is kept until it settles.
 public struct SlideChangeDetector: Sendable {
-    /// At most this fraction of cells may change between consecutive frames for the frame to count as "settled".
-    public var stableFraction = 0.03
+    /// How long the picture must stay unchanged before it's kept.
+    public var settleSeconds: Double = 6
+    /// A cell counts as changed between two checks when its brightness moves by more than this (0–255). Above
+    /// video-compression noise and a blinking text cursor, below a typed character.
+    public var settleThreshold = 16
+    /// At most this many cells may change between checks for the picture to count as still.
+    public var settleTolerance = 1
     /// At least this fraction must differ from the last kept screenshot to count as new content.
     public var newContentFraction = 0.12
     /// Never keep two automatic screenshots closer together than this.
     public var minInterval: Double = 4
 
-    /// A cell counts as video when it changed in at least 2 of the last this-many comparisons.
-    public var videoMemory = 3
-    /// Keep nothing while more than this fraction of the picture is video.
-    public var maxVideoFraction = 0.4
-
     private var previous: FrameSignature?
+    /// When the picture last changed (the start of the current still stretch).
+    private var stillSince: Double?
     private var lastKept: FrameSignature?
     private var lastKeptTime = -Double.infinity
-    /// Which cells changed, for the last few comparisons (oldest first).
-    private var recentChanges: [[Bool]] = []
 
     public init() {}
 
     public mutating func shouldKeep(_ frame: FrameSignature, at time: Double) -> Bool {
         defer { previous = frame }
-        guard let previous else { return false }
-        let changed = frame.changedCells(from: previous)
-        // Video is judged from earlier comparisons, so a slide change (one big change) isn't mistaken for it.
-        let still = stillCells(count: changed.count)
-        recentChanges.append(changed)
-        if recentChanges.count > videoMemory { recentChanges.removeFirst() }
-
-        let videoFraction = 1 - Double(still.filter { $0 }.count) / Double(max(still.count, 1))
-        guard videoFraction <= maxVideoFraction else { return false }
-        guard frame.changedFraction(from: previous, among: still) <= stableFraction else { return false }
-        guard !frame.isBlank, time - lastKeptTime >= minInterval else { return false }
-        if let lastKept, frame.changedFraction(from: lastKept, among: still) < newContentFraction { return false }
+        guard let previous, frame.changedCells(from: previous, threshold: settleThreshold).filter({ $0 }).count <= settleTolerance else {
+            stillSince = time
+            return false
+        }
+        let since = stillSince ?? time
+        stillSince = since
+        guard time - since >= settleSeconds, !frame.isBlank, time - lastKeptTime >= minInterval else { return false }
+        if let lastKept, frame.changedFraction(from: lastKept) < newContentFraction { return false }
         markKept(frame, at: time)
         return true
     }
 
-    /// Cells that are not video: changed in fewer than 2 of the recent comparisons.
-    private func stillCells(count: Int) -> [Bool] {
-        (0..<count).map { cell in
-            recentChanges.reduce(0) { $0 + ($1.indices.contains(cell) && $1[cell] ? 1 : 0) } < 2
-        }
+    /// Starts the buffer over, for a share that started, ended or moved. The last kept screenshot is remembered,
+    /// so a share that blinks off and on doesn't produce a duplicate.
+    public mutating func reset() {
+        previous = nil
+        stillSince = nil
     }
 
     /// Manual screenshots count as kept, so the automatic mode doesn't duplicate them.

@@ -8,71 +8,85 @@ import os
 @testable import HushpadKit
 
 struct SlideChangeDetectorTests {
-    private func frame(_ value: UInt8, pattern: Int = 0) -> FrameSignature {
-        let count = FrameSignature.columns * FrameSignature.rows
-        // A non-uniform frame (text-like stripes) so it isn't treated as blank.
-        return FrameSignature(lumas: (0..<count).map { i in (i / FrameSignature.columns + pattern) % 3 == 0 ? 20 : value })
+    private static let cells = FrameSignature.columns * FrameSignature.rows
+
+    /// A non-uniform frame (text-like stripes) so it isn't treated as blank; `slide` shifts the stripes.
+    private func frame(_ slide: Int = 0) -> FrameSignature {
+        FrameSignature(lumas: (0..<Self.cells).map { i in (i / FrameSignature.columns + slide) % 3 == 0 ? 20 : 200 })
     }
 
-    @Test func keepsFirstSettledFrame() {
-        var detector = SlideChangeDetector()
-        let kept1 = detector.shouldKeep(frame(200), at: 0)   // need two frames to know it's settled
-        #expect(!kept1)
-        let kept2 = detector.shouldKeep(frame(200), at: 2)
-        #expect(kept2)
-    }
-
-    @Test func ignoresSameSlide() {
-        var detector = SlideChangeDetector()
-        _ = detector.shouldKeep(frame(200), at: 0)
-        _ = detector.shouldKeep(frame(200), at: 2)
-        let kept3 = detector.shouldKeep(frame(200), at: 10)
-        #expect(!kept3)
-    }
-
-    @Test func keepsNewSlideOnceSettled() {
-        var detector = SlideChangeDetector()
-        _ = detector.shouldKeep(frame(200), at: 0)
-        _ = detector.shouldKeep(frame(200), at: 2)
-        let kept4 = detector.shouldKeep(frame(200, pattern: 1), at: 10)  // transition frame
-        #expect(!kept4)
-        let kept5 = detector.shouldKeep(frame(200, pattern: 1), at: 12)
-        #expect(kept5)
-    }
-
-    @Test func ignoresConstantlyMovingVideo() {
-        var detector = SlideChangeDetector()
-        for step in 0..<20 {
-            let kept6 = detector.shouldKeep(frame(200, pattern: step), at: Double(step) * 2)
-            #expect(!kept6)
+    /// Feeds one frame every 2 s (the capture loop's pace) from `start`, returning the times something was kept.
+    private func run(_ detector: inout SlideChangeDetector, from start: Double = 0, _ frames: [FrameSignature]) -> [Double] {
+        frames.enumerated().compactMap { step, frame in
+            let time = start + Double(step) * 2
+            return detector.shouldKeep(frame, at: time) ? time : nil
         }
     }
 
-    /// A screen share as Zoom and Meet show it: the shared slide, plus a strip of webcam tiles that never stops moving.
-    private func sharedSlide(_ slide: Int, video step: Int) -> FrameSignature {
-        let columns = FrameSignature.columns
-        return FrameSignature(lumas: (0..<columns * FrameSignature.rows).map { i in
-            let row = i / columns, column = i % columns
-            if row < 4 { return UInt8((column * 37 + step * 91 + row * 13) % 256) }  // webcams: different every frame
-            return (row + slide) % 3 == 0 ? 20 : 200                                // the slide
-        })
+    @Test func keepsASlideOnceStillForSixSeconds() {
+        var detector = SlideChangeDetector()
+        #expect(run(&detector, Array(repeating: frame(), count: 6)) == [6])
     }
 
-    @Test func keepsSlidesNextToMovingWebcams() {
+    @Test func waitsOutTheBuffer() {
         var detector = SlideChangeDetector()
-        var keptA = 0, keptB = 0
-        for step in 0..<6 where detector.shouldKeep(sharedSlide(0, video: step), at: Double(step) * 2) { keptA += 1 }
-        for step in 6..<12 where detector.shouldKeep(sharedSlide(1, video: step), at: Double(step) * 2) { keptB += 1 }
-        #expect(keptA == 1)
-        #expect(keptB == 1)
+        #expect(run(&detector, Array(repeating: frame(), count: 3)).isEmpty)  // still for only 4 s
+    }
+
+    @Test func keepsEachNewSlideOnceButNotRepeats() {
+        var detector = SlideChangeDetector()
+        let slides = Array(repeating: frame(0), count: 6) + Array(repeating: frame(1), count: 6) + Array(repeating: frame(0), count: 2)
+        #expect(run(&detector, slides) == [6, 18])
+    }
+
+    @Test func waitsUntilTypingStops() {
+        var detector = SlideChangeDetector()
+        var lumas = frame().lumas
+        var frames = Array(repeating: FrameSignature(lumas: lumas), count: 4)  // the document, still: kept at 6 s
+        // Then someone types for 20 s (t = 8…26): a line of text appears every 2 s, a third of a row at a time.
+        for step in 0..<10 {
+            let row = 1 + step * 3
+            for column in 0..<FrameSignature.columns { lumas[row * FrameSignature.columns + column] = 90 }
+            frames.append(FrameSignature(lumas: lumas))
+        }
+        frames += Array(repeating: FrameSignature(lumas: lumas), count: 5)  // t = 28…36, still again
+        #expect(run(&detector, frames) == [6, 32])  // nothing while typing; kept 6 s after the last keystroke
+    }
+
+    @Test func toleratesABlinkingCursor() {
+        var detector = SlideChangeDetector()
+        let frames = (0..<6).map { step -> FrameSignature in
+            var lumas = frame().lumas
+            if step.isMultiple(of: 2) { lumas[FrameSignature.columns * 10 + 10] = 120 }  // one cell flickers
+            return FrameSignature(lumas: lumas)
+        }
+        #expect(run(&detector, frames) == [6])
+    }
+
+    @Test func neverKeepsAPlayingVideo() {
+        var detector = SlideChangeDetector()
+        // A video or a spinning 3D model in the share: a large region differs on every check.
+        let frames = (0..<20).map { step in
+            FrameSignature(lumas: (0..<Self.cells).map { i in
+                i % FrameSignature.columns < 40 ? UInt8((i * 37 + step * 91) % 256) : ((i / FrameSignature.columns) % 3 == 0 ? 20 : 200)
+            })
+        }
+        #expect(run(&detector, frames).isEmpty)
+    }
+
+    @Test func resetStartsTheBufferOverWithoutDuplicating() {
+        var detector = SlideChangeDetector()
+        #expect(run(&detector, Array(repeating: frame(0), count: 4)) == [6])
+        detector.reset()  // the share blinked off and on
+        #expect(run(&detector, from: 20, Array(repeating: frame(0), count: 4)).isEmpty)
+        detector.reset()  // a new share
+        #expect(run(&detector, from: 40, Array(repeating: frame(1), count: 4)) == [46])
     }
 
     @Test func ignoresBlankScreens() {
         var detector = SlideChangeDetector()
-        let black = FrameSignature(lumas: Array(repeating: 0, count: FrameSignature.columns * FrameSignature.rows))
-        _ = detector.shouldKeep(black, at: 0)
-        let kept7 = detector.shouldKeep(black, at: 2)
-        #expect(!kept7)
+        let black = FrameSignature(lumas: Array(repeating: 0, count: Self.cells))
+        #expect(run(&detector, Array(repeating: black, count: 6)).isEmpty)
     }
 
     @Test func storeParsesTimestampsFromFileNames() throws {

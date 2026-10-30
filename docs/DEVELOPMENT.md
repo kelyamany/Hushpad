@@ -35,7 +35,12 @@ bundle id is a separate app: meetings move through an iCloud Drive library folde
 - `HushpadKit/`: Swift package with the logic, plus the `hushpad` CLI (`swift run hushpad --help`)
   - `HushpadCore/`: data model, storage, file coordination, library encryption, exporters (also used by the Watch)
   - `HushpadKit/Recording/`: mic and system audio capture on one shared clock, permissions
-  - `HushpadKit/Screenshots/`: ScreenCaptureKit capture and slide-change detection
+  - `HushpadKit/Screenshots/`: ScreenCaptureKit capture, screen-share detection and slide-change detection.
+    Automatic screenshots only run while someone else shares in Zoom, Teams or Google Meet. The share is found
+    through Accessibility (`ScreenShareDetector`, rules in `HushpadCore/Screenshots/ScreenShareAnalyzer.swift`),
+    each frame is cropped to the shared content, and a frame is kept once it has been still for 6 s. If a share
+    isn't picked up, run `swift run hushpad ax-share` during it: it prints a redacted outline of the meeting window
+    (lengths and share keywords only, no names or text) to tune the rules with.
   - `HushpadKit/Transcription/`: WhisperKit engine, model catalog
   - `HushpadKit/Diarization/`: SpeakerKit (pyannote) speaker separation
   - `HushpadKit/Pipeline/`: transcribe → diarize → align → merge, echo and hallucination filtering

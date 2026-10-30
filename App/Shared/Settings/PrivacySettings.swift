@@ -322,6 +322,7 @@ struct PermissionRow: View {
         #if os(macOS)
         case .systemAudio: "Screen & System Audio Recording"
         case .screenRecording: "Screen & System Audio Recording"
+        case .accessibility: "Accessibility"
         #else
         case .camera: "Camera"
         case .notifications: "Notifications"

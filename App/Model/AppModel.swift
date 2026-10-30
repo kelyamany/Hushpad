@@ -467,7 +467,8 @@ final class AppModel {
     private func callAudioOffAction(_ warnings: [String]) -> Notice.Action? {
         #if os(macOS)
         warnings.contains { $0.contains("Call audio") } ? .permission(.systemAudio)
-            : warnings.contains { $0.hasPrefix("Screenshots are off") } ? .permission(.screenRecording) : nil
+            : warnings.contains { $0.hasPrefix("Screenshots are off") } ? .permission(.screenRecording)
+            : warnings.contains { $0.hasPrefix("Automatic screenshots are off") } ? .permission(.accessibility) : nil
         #else
         nil
         #endif
