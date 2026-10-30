@@ -9,7 +9,7 @@ struct HushpadCLI: AsyncParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "hushpad",
         abstract: "Local meeting transcription with speaker labels.",
-        subcommands: [Transcribe.self, Live.self, Record.self, ImportGranola.self, Notes.self, Merge.self, Models.self, DemoLibrary.self],
+        subcommands: [Transcribe.self, Live.self, Record.self, ImportGranola.self, Notes.self, Merge.self, Models.self, DemoLibrary.self, AXShare.self],
         defaultSubcommand: Transcribe.self
     )
 }
@@ -232,5 +232,17 @@ struct Merge: AsyncParsableCommand {
         }
         let merged = try RecordingMerger.merge(.init(first: try find(first), second: try find(second), title: title), in: store)
         print("Merged into “\(merged.title)” at \(store.folder(for: merged.id).path)")
+    }
+}
+
+/// Prints what automatic screenshots see during a call: whether someone is sharing, and a redacted outline of the
+/// meeting window to tune the share rules with. Needs Accessibility for the terminal app running it.
+struct AXShare: ParsableCommand {
+    static let configuration = CommandConfiguration(commandName: "ax-share",
+                                                    abstract: "Show how Hushpad reads a screen share (names and text redacted).")
+    func run() throws {
+        #if os(macOS)
+        print(ScreenShareDetector.redactedReport())
+        #endif
     }
 }

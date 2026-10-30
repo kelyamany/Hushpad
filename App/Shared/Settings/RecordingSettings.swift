@@ -21,6 +21,11 @@ struct RecordingSection: View {
             Picker("Screenshots of shared screens", selection: $settings.screenshotMode) {
                 ForEach(ScreenshotMode.allCases) { Text($0.displayName).tag($0) }
             }
+            // Automatic screenshots need Accessibility to see when someone shares; ask right when it's picked.
+            .onChange(of: settings.screenshotMode) { _, mode in
+                guard mode == .automatic, model.permissions.status(.accessibility) == .notDetermined else { return }
+                Task { await model.permissions.request(.accessibility) }
+            }
             #else
             Toggle("Camera button while recording", isOn: Binding(
                 get: { settings.screenshotMode != .off },

@@ -2,6 +2,7 @@ import AVFoundation
 import Foundation
 #if os(macOS)
 import AppKit
+import ApplicationServices
 import CoreGraphics
 #else
 import UIKit
@@ -9,13 +10,15 @@ import UserNotifications
 #endif
 
 /// The permissions Hushpad needs, per device:
-/// - Mac: Microphone (the room / you), System Audio Recording (the call), Screen Recording (screenshots, optional).
+/// - Mac: Microphone (the room / you), System Audio Recording (the call), Screen Recording (screenshots, optional),
+///   Accessibility (to see when someone shares their screen, for automatic screenshots; optional).
 /// - iPhone: Microphone (the room), Camera (photos of slides / whiteboard, optional).
 public enum Permission: String, CaseIterable, Sendable, Identifiable {
     case microphone
     #if os(macOS)
     case systemAudio
     case screenRecording
+    case accessibility
     #else
     case camera
     case notifications
@@ -31,6 +34,7 @@ public enum Permission: String, CaseIterable, Sendable, Identifiable {
         #if os(macOS)
         case .systemAudio: "System audio"
         case .screenRecording: "Screen recording"
+        case .accessibility: "Accessibility"
         #else
         case .camera: "Camera"
         case .notifications: "Notifications"
@@ -44,6 +48,7 @@ public enum Permission: String, CaseIterable, Sendable, Identifiable {
         #if os(macOS)
         case .systemAudio: "speaker.wave.2.fill"
         case .screenRecording: "rectangle.dashed.badge.record"
+        case .accessibility: "accessibility"
         #else
         case .camera: "camera.fill"
         case .notifications: "bell.badge.fill"
@@ -59,6 +64,7 @@ public enum Permission: String, CaseIterable, Sendable, Identifiable {
         #if os(macOS)
         case .systemAudio: "Records the other side of Zoom, Teams and Google Meet calls."
         case .screenRecording: "Optional. Takes screenshots when someone shares their screen."
+        case .accessibility: "Optional. Lets automatic screenshots see when someone shares."
         #else
         case .camera: "Optional. Snap the projector or whiteboard; photos are placed in the transcript."
         case .notifications: "Optional. Tells you when a transcript is ready while you're in another app."
@@ -79,6 +85,7 @@ public enum PermissionStatus: Sendable, Equatable {
 public enum Permissions {
     private static let askedSystemAudioKey = "Hushpad.askedSystemAudio"
     private static let askedScreenKey = "Hushpad.askedScreenRecording"
+    private static let askedAccessibilityKey = "Hushpad.askedAccessibility"
 
     /// The current status, checked live every time (cheap system calls, no caching except notifications).
     public static func status(_ permission: Permission) -> PermissionStatus {
@@ -101,6 +108,9 @@ public enum Permissions {
         case .screenRecording:
             return screenStatus(preflight: CGPreflightScreenCaptureAccess(), tcc: TCC.preflight("kTCCServiceScreenCapture"),
                                 asked: UserDefaults.standard.bool(forKey: askedScreenKey))
+        case .accessibility:
+            return AXIsProcessTrusted() ? .granted
+                : UserDefaults.standard.bool(forKey: askedAccessibilityKey) ? .denied : .notDetermined
         #else
         case .camera:
             return map(AVCaptureDevice.authorizationStatus(for: .video))
@@ -184,6 +194,11 @@ public enum Permissions {
                 // Already denied once: macOS won't prompt again, so go to the setting.
                 if status(.screenRecording) == .denied { openSettings(for: .screenRecording) }
             }
+        case .accessibility:
+            UserDefaults.standard.set(true, forKey: askedAccessibilityKey)
+            // Shows macOS's own dialog, which leads to the Accessibility list in System Settings.
+            // The value of kAXTrustedCheckOptionPrompt, which Swift 6 won't read as a global.
+            _ = AXIsProcessTrustedWithOptions(["AXTrustedCheckOptionPrompt": true] as CFDictionary)
         #else
         case .camera:
             _ = await AVCaptureDevice.requestAccess(for: .video)
@@ -202,6 +217,7 @@ public enum Permissions {
         case .microphone: "Privacy_Microphone"
         case .systemAudio: "Privacy_AudioCapture"
         case .screenRecording: "Privacy_ScreenCapture"
+        case .accessibility: "Privacy_Accessibility"
         }
         if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?\(anchor)") {
             NSWorkspace.shared.open(url)
